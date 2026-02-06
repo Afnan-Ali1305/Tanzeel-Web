@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Will You Be My Friend? 🤝</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ffcfe8 0%, #a2d2ff 100%);
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .friendship-card {
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            padding: 40px 30px;
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 8px solid #fff;
+        }
+
+        .friendship-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(90deg, #ff9ec0, #6eb5ff, #a3ff9e);
+        }
+
+        .gif-container {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 25px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+            border: 5px solid #fff;
+        }
+
+        .gif-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        h1 {
+            color: #5a67d8;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .question {
+            font-size: 1.8rem;
+            color: #4a5568;
+            margin-bottom: 40px;
+            font-weight: 600;
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 30px;
+            position: relative;
+            min-height: 120px;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 0 rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            position: absolute;
+        }
+
+        .btn:active {
+            transform: translateY(4px);
+            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-yes {
+            background-color: #48bb78;
+            color: white;
+            left: 50%;
+            transform: translateX(-125%);
+            z-index: 10;
+        }
+
+        .btn-yes:hover {
+            background-color: #38a169;
+            transform: translateX(-125%) scale(1.05);
+        }
+
+        .btn-no {
+            background-color: #a0aec0;
+            color: white;
+            left: 50%;
+            transform: translateX(25%);
+            z-index: 5;
+            transition: all 0.5s ease;
+            user-select: none;
+        }
+
+        .btn-no:hover {
+            background-color: #718096;
+        }
+
+        .hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 24px;
+            color: #ff6b8b;
+            opacity: 0;
+            animation: floatUp 4s linear infinite;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        .instructions {
+            margin-top: 30px;
+            color: #718096;
+            font-size: 1rem;
+            font-style: italic;
+        }
+
+        .friend-count {
+            margin-top: 20px;
+            color: #5a67d8;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .question {
+                font-size: 1.5rem;
+            }
+            
+            .btn {
+                padding: 16px 32px;
+                font-size: 1.3rem;
+            }
+            
+            .gif-container {
+                width: 180px;
+                height: 180px;
+            }
+            
+            .buttons-container {
+                min-height: 140px;
+            }
+            
+            .btn-yes {
+                transform: translateX(-125%);
+            }
+            
+            .btn-no {
+                transform: translateX(25%);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .friendship-card {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .question {
+                font-size: 1.3rem;
+            }
+            
+            .btn {
+                padding: 14px 28px;
+                font-size: 1.2rem;
+            }
+            
+            .gif-container {
+                width: 160px;
+                height: 160px;
+            }
+            
+            .buttons-container {
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                min-height: 180px;
+            }
+            
+            .btn-yes, .btn-no {
+                position: relative;
+                left: 0;
+                transform: none;
+                width: 80%;
+            }
+            
+            .btn-yes:hover {
+                transform: scale(1.05);
+            }
+        }
+
+        /* Animation for the card */
+        @keyframes cardEntrance {
+            from {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .friendship-card {
+            animation: cardEntrance 0.8s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="friendship-card">
+            <div class="gif-container">
+                <img src="data:image/jpeg;base64,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" alt="Cute animated friendship GIF">
+            </div>
+            
+            <h1>Friendship Request</h1>
+            
+            <div class="question">
+                Do you want to be my friend? 🤝
+            </div>
+            
+            <div class="buttons-container">
+                <button class="btn btn-yes" id="yesButton">
+                    <i class="fas fa-heart"></i> Yes!
+                </button>
+                
+                <button class="btn btn-no" id="noButton">
+                    <i class="fas fa-times"></i> No
+                </button>
+                
+                <div class="hearts" id="heartsContainer"></div>
+            </div>
+            
+            <div class="instructions" id="instructions">
+                (Try to click the "No" button... if you can! 😉)
+            </div>
+            
+            <div class="friend-count">
+                <i class="fas fa-users"></i> <span id="friendCount">1,234</span> friendships started here!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const yesButton = document.getElementById('yesButton');
+            const noButton = document.getElementById('noButton');
+            const heartsContainer = document.getElementById('heartsContainer');
+            const friendCount = document.getElementById('friendCount');
+            const instructions = document.getElementById('instructions');
+            
+            // Make the friend count number animate
+            let count = 1234;
+            setInterval(() => {
+                count += Math.floor(Math.random() * 5) + 1;
+                friendCount.textContent = count.toLocaleString();
+            }, 3000);
+            
+            // Create floating hearts
+            function createHearts() {
+                for (let i = 0; i < 15; i++) {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    heart.innerHTML = '❤';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.animationDelay = Math.random() * 4 + 's';
+                    heartsContainer.appendChild(heart);
+                }
+            }
+            
+            createHearts();
+            
+            // Yes button behavior - navigate to yes.html
+            yesButton.addEventListener('click', function() {
+                // Add celebration effect
+                this.innerHTML = '<i class="fas fa-star"></i> Yay! <i class="fas fa-star"></i>';
+                this.style.backgroundColor = '#fbbf24';
+                this.style.transform = 'translateX(-125%) scale(1.2)';
+                
+                // Create explosion of hearts
+                for (let i = 0; i < 20; i++) {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    heart.innerHTML = '❤';
+                    heart.style.left = '50%';
+                    heart.style.fontSize = '32px';
+                    heart.style.color = '#ff6b8b';
+                    heart.style.animationDuration = '2s';
+                    heartsContainer.appendChild(heart);
+                    
+                    // Remove heart after animation
+                    setTimeout(() => {
+                        heart.remove();
+                    }, 2000);
+                }
+                
+                // Navigate to yes.html after a short delay
+                setTimeout(() => {
+                    window.location.href = 'yes.html';
+                }, 1000);
+            });
+            
+            // No button behavior - move on hover (desktop) or touch (mobile)
+            noButton.addEventListener('mouseover', moveNoButton);
+            noButton.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                moveNoButton();
+            });
+            
+            // Prevent clicking on the No button
+            noButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                moveNoButton();
+                instructions.textContent = "I told you it's not clickable! 😄";
+                instructions.style.color = "#ff6b8b";
+                
+                // Reset instructions after 2 seconds
+                setTimeout(() => {
+                    instructions.textContent = '(Try to click the "No" button... if you can! 😉)';
+                    instructions.style.color = "#718096";
+                }, 2000);
+            });
+            
+            function moveNoButton() {
+                const container = document.querySelector('.buttons-container');
+                const button = document.getElementById('noButton');
+                
+                // Get container dimensions
+                const containerRect = container.getBoundingClientRect();
+                const buttonRect = button.getBoundingClientRect();
+                
+                // Calculate max positions to keep button inside container
+                const maxX = containerRect.width - buttonRect.width;
+                const maxY = containerRect.height - buttonRect.height;
+                
+                // Generate random position
+                const randomX = Math.floor(Math.random() * maxX);
+                const randomY = Math.floor(Math.random() * maxY);
+                
+                // Apply new position with smooth transition
+                button.style.transition = 'all 0.5s ease';
+                button.style.left = `${randomX}px`;
+                button.style.top = `${randomY}px`;
+                button.style.transform = 'none';
+                
+                // Change button color temporarily
+                const colors = ['#a0aec0', '#f56565', '#ed8936', '#ecc94b', '#4299e1'];
+                const randomColor = colors[Math.floor(Math.random() * colors.length)];
+                button.style.backgroundColor = randomColor;
+                
+                // Reset color after a short time
+                setTimeout(() => {
+                    button.style.backgroundColor = '#a0aec0';
+                }, 300);
+                
+                // Add a funny message sometimes
+                const messages = [
+                    "Nice try!",
+                    "Too slow!",
+                    "Almost!",
+                    "Not today!",
+                    "Nope!",
+                    "Try again!"
+                ];
+                
+                if (Math.random() > 0.7) {
+                    const message = messages[Math.floor(Math.random() * messages.length)];
+                    instructions.textContent = `"${message}" - No button`;
+                    instructions.style.color = "#4299e1";
+                    
+                    setTimeout(() => {
+                        instructions.textContent = '(Try to click the "No" button... if you can! 😉)';
+                        instructions.style.color = "#718096";
+                    }, 1500);
+                }
+            }
+            
+            // Initialize the No button position
+            setTimeout(() => {
+                // For mobile, adjust the button positioning
+                if (window.innerWidth <= 480) {
+                    noButton.style.position = 'relative';
+                    noButton.style.left = '0';
+                    noButton.style.top = '0';
+                    noButton.style.transform = 'none';
+                    yesButton.style.position = 'relative';
+                    yesButton.style.left = '0';
+                    yesButton.style.transform = 'none';
+                }
+            }, 100);
+            
+            // Add resize listener to adjust for mobile
+            window.addEventListener('resize', function() {
+                if (window.innerWidth <= 480) {
+                    noButton.style.position = 'relative';
+                    noButton.style.left = '0';
+                    noButton.style.top = '0';
+                    noButton.style.transform = 'none';
+                    yesButton.style.position = 'relative';
+                    yesButton.style.left = '0';
+                    yesButton.style.transform = 'none';
+                } else {
+                    noButton.style.position = 'absolute';
+                    noButton.style.left = '50%';
+                    noButton.style.top = '0';
+                    noButton.style.transform = 'translateX(25%)';
+                    yesButton.style.position = 'absolute';
+                    yesButton.style.left = '50%';
+                    yesButton.style.transform = 'translateX(-125%)';
+                }
+            });
+        });
+    </script>
+</body>
+</html>
