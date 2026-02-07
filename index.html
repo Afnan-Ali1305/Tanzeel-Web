@@ -3,144 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Will You Be My Friend? 🤝</title>
+    <title>Best Friendship Proposal 💝</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Arial Rounded MT Bold', 'Arial', sans-serif;
         }
 
         body {
             min-height: 100vh;
+            background: linear-gradient(135deg, #ffafcc 0%, #a2d2ff 100%);
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #ffcfe8 0%, #a2d2ff 100%);
             padding: 20px;
             overflow-x: hidden;
+            transition: background 1s ease;
         }
 
-        .container {
+        /* Page Styles */
+        .page {
+            display: none;
             width: 100%;
-            max-width: 600px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .friendship-card {
-            background-color: rgba(255, 255, 255, 0.95);
-            border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            padding: 40px 30px;
-            width: 100%;
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 50px 40px;
             text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            border: 10px solid white;
             position: relative;
             overflow: hidden;
-            border: 8px solid #fff;
+            animation: pageAppear 0.8s ease-out;
         }
 
-        .friendship-card::before {
+        .page.active {
+            display: block;
+        }
+
+        @keyframes pageAppear {
+            0% { opacity: 0; transform: scale(0.9) translateY(20px); }
+            100% { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        /* Page Decorations */
+        .page::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 8px;
-            background: linear-gradient(90deg, #ff9ec0, #6eb5ff, #a3ff9e);
+            right: 0;
+            height: 10px;
+            background: linear-gradient(90deg, #ff6b8b, #6eb5ff, #a3ff9e, #fbbf24);
+            z-index: 2;
         }
 
-        .gif-container {
-            width: 200px;
-            height: 200px;
-            margin: 0 auto 25px;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-            border: 5px solid #fff;
-        }
-
-        .gif-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        h1 {
-            color: #5a67d8;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
-        }
-
-        .question {
-            font-size: 1.8rem;
-            color: #4a5568;
-            margin-bottom: 40px;
-            font-weight: 600;
-        }
-
-        .buttons-container {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-top: 30px;
-            position: relative;
-            min-height: 120px;
-        }
-
-        .btn {
-            padding: 18px 40px;
-            font-size: 1.5rem;
-            font-weight: bold;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 0 rgba(0, 0, 0, 0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            position: absolute;
-        }
-
-        .btn:active {
-            transform: translateY(4px);
-            box-shadow: 0 2px 0 rgba(0, 0, 0, 0.1);
-        }
-
-        .btn-yes {
-            background-color: #48bb78;
-            color: white;
-            left: 50%;
-            transform: translateX(-125%);
-            z-index: 10;
-        }
-
-        .btn-yes:hover {
-            background-color: #38a169;
-            transform: translateX(-125%) scale(1.05);
-        }
-
-        .btn-no {
-            background-color: #a0aec0;
-            color: white;
-            left: 50%;
-            transform: translateX(25%);
-            z-index: 5;
-            transition: all 0.5s ease;
-            user-select: none;
-        }
-
-        .btn-no:hover {
-            background-color: #718096;
-        }
-
-        .hearts {
+        .hearts-bg {
             position: absolute;
             width: 100%;
             height: 100%;
@@ -148,342 +69,801 @@
             left: 0;
             pointer-events: none;
             z-index: 1;
+            overflow: hidden;
         }
 
         .heart {
             position: absolute;
             font-size: 24px;
             color: #ff6b8b;
-            opacity: 0;
-            animation: floatUp 4s linear infinite;
+            opacity: 0.3;
+            animation: float 15s infinite linear;
         }
 
-        @keyframes floatUp {
-            0% {
-                transform: translateY(0) rotate(0deg);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100px) rotate(360deg);
-                opacity: 0;
-            }
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
         }
 
-        .instructions {
-            margin-top: 30px;
-            color: #718096;
-            font-size: 1rem;
-            font-style: italic;
-        }
-
-        .friend-count {
-            margin-top: 20px;
+        /* Typography */
+        h1 {
             color: #5a67d8;
-            font-size: 1.2rem;
-            font-weight: 600;
+            font-size: 3.5rem;
+            margin-bottom: 25px;
+            text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 3;
         }
 
-        /* Responsive design */
+        h2 {
+            color: #4a5568;
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 1.8rem;
+            color: #2d3748;
+            margin-bottom: 40px;
+            line-height: 1.6;
+            background: rgba(255, 255, 255, 0.7);
+            padding: 25px;
+            border-radius: 20px;
+            border-left: 8px solid #ff6b8b;
+        }
+
+        /* Agreement Document */
+        .agreement {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 3px dashed #5a67d8;
+            text-align: left;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .agreement h3 {
+            color: #5a67d8;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 2rem;
+        }
+
+        .agreement ul {
+            list-style-type: none;
+            padding: 0 20px;
+        }
+
+        .agreement li {
+            padding: 12px 0;
+            border-bottom: 1px solid #e2e8f0;
+            font-size: 1.3rem;
+            color: #4a5568;
+            display: flex;
+            align-items: center;
+        }
+
+        .agreement li i {
+            color: #48bb78;
+            margin-right: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* Profile Picture Container */
+        .profile-container {
+            width: 250px;
+            height: 250px;
+            margin: 30px auto;
+            position: relative;
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid white;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            animation: floatProfile 3s ease-in-out infinite;
+        }
+
+        @keyframes floatProfile {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .profile-frame {
+            position: absolute;
+            top: -15px;
+            left: -15px;
+            right: -15px;
+            bottom: -15px;
+            border: 5px solid #ff6b8b;
+            border-radius: 50%;
+            animation: pulseFrame 2s infinite;
+        }
+
+        @keyframes pulseFrame {
+            0% { border-color: #ff6b8b; }
+            50% { border-color: #6eb5ff; }
+            100% { border-color: #ff6b8b; }
+        }
+
+        /* Crying Effect Overlay */
+        .crying-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(135, 206, 235, 0.1);
+            border-radius: 50%;
+            display: none;
+        }
+
+        .crying-overlay.show {
+            display: block;
+        }
+
+        .tear {
+            position: absolute;
+            width: 8px;
+            height: 20px;
+            background-color: #87CEEB;
+            border-radius: 10px;
+            animation: tearDrop 1.5s infinite;
+        }
+
+        .tear-left {
+            left: 40%;
+            top: 40%;
+            animation-delay: 0.2s;
+        }
+
+        .tear-right {
+            right: 40%;
+            top: 40%;
+            animation-delay: 0.5s;
+        }
+
+        @keyframes tearDrop {
+            0% { transform: translateY(0); opacity: 1; height: 0; }
+            50% { transform: translateY(30px); opacity: 1; height: 25px; }
+            100% { transform: translateY(60px); opacity: 0; height: 0; }
+        }
+
+        /* Sad Message Bubble */
+        .sad-message {
+            position: absolute;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 15px 25px;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            border: 3px solid #ff6b8b;
+            font-size: 1.2rem;
+            color: #4a5568;
+            display: none;
+            z-index: 10;
+            min-width: 200px;
+        }
+
+        .sad-message::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #ff6b8b;
+        }
+
+        .sad-message.show {
+            display: block;
+            animation: bounceIn 0.5s ease;
+        }
+
+        /* Buttons */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .yes-button, .no-button {
+            padding: 20px 50px;
+            font-size: 1.8rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            min-width: 220px;
+            position: relative;
+            box-shadow: 0 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .yes-button {
+            background: linear-gradient(135deg, #48bb78, #38a169);
+            color: white;
+        }
+
+        .no-button {
+            background: linear-gradient(135deg, #f56565, #e53e3e);
+            color: white;
+        }
+
+        .yes-button:hover {
+            background: linear-gradient(135deg, #38a169, #2f855a);
+            transform: translateY(-5px);
+            box-shadow: 0 13px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .no-button:hover {
+            background: linear-gradient(135deg, #e53e3e, #c53030);
+            transform: translateY(-5px);
+            box-shadow: 0 13px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .yes-button:active, .no-button:active {
+            transform: translateY(5px);
+            box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        /* Dislocated Button */
+        .no-button.dislocated {
+            animation: dislocate 0.5s ease-out forwards;
+            pointer-events: none;
+        }
+
+        @keyframes dislocate {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+            25% { transform: translate(-100px, -50px) rotate(-45deg); opacity: 0.8; }
+            50% { transform: translate(200px, 30px) rotate(90deg); opacity: 0.6; }
+            75% { transform: translate(-150px, 80px) rotate(-135deg); opacity: 0.4; }
+            100% { transform: translate(300px, -100px) rotate(180deg); opacity: 0; display: none; }
+        }
+
+        /* Warning Message */
+        .warning-message {
+            background: #fff5f5;
+            border-radius: 20px;
+            padding: 25px;
+            margin: 30px 0;
+            border-left: 8px solid #f56565;
+            animation: pulse 2s infinite;
+            display: none;
+        }
+
+        .warning-message.show {
+            display: block;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(245, 101, 101, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(245, 101, 101, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 101, 101, 0); }
+        }
+
+        /* Celebration Page Styles */
+        .confetti {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .confetti-piece {
+            position: absolute;
+            width: 12px;
+            height: 20px;
+            opacity: 0;
+            animation: fall 5s linear infinite;
+        }
+
+        @keyframes fall {
+            0% { top: -20px; opacity: 1; transform: rotate(0deg); }
+            100% { top: 100%; opacity: 0; transform: rotate(360deg); }
+        }
+
+        .friendship-perks {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 40px 0;
+        }
+
+        .perk {
+            background: linear-gradient(135deg, #ffcfe8, #a2d2ff);
+            border-radius: 20px;
+            padding: 25px;
+            width: 170px;
+            text-align: center;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .perk i {
+            font-size: 3rem;
+            color: #5a67d8;
+            margin-bottom: 15px;
+        }
+
+        .perk p {
+            color: #2d3748;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Final Message */
+        .final-message {
+            background: #e6fffa;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            border-left: 8px solid #38b2ac;
+            font-size: 1.8rem;
+            color: #234e52;
+            display: none;
+        }
+
+        .final-message.show {
+            display: block;
+            animation: bounceIn 1s ease;
+        }
+
+        @keyframes bounceIn {
+            0% { transform: scale(0.5); opacity: 0; }
+            60% { transform: scale(1.1); opacity: 1; }
+            100% { transform: scale(1); }
+        }
+
+        /* Responsive */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .question {
+            h1 { font-size: 2.8rem; }
+            h2 { font-size: 2.2rem; }
+            .message { font-size: 1.5rem; }
+            .yes-button, .no-button {
+                padding: 18px 40px;
                 font-size: 1.5rem;
+                min-width: 200px;
             }
-            
-            .btn {
-                padding: 16px 32px;
-                font-size: 1.3rem;
+            .profile-container {
+                width: 200px;
+                height: 200px;
             }
-            
-            .gif-container {
-                width: 180px;
-                height: 180px;
-            }
-            
-            .buttons-container {
-                min-height: 140px;
-            }
-            
-            .btn-yes {
-                transform: translateX(-125%);
-            }
-            
-            .btn-no {
-                transform: translateX(25%);
+            .page {
+                padding: 40px 25px;
             }
         }
 
         @media (max-width: 480px) {
-            .friendship-card {
-                padding: 30px 20px;
-            }
-            
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            .question {
-                font-size: 1.3rem;
-            }
-            
-            .btn {
-                padding: 14px 28px;
-                font-size: 1.2rem;
-            }
-            
-            .gif-container {
-                width: 160px;
-                height: 160px;
-            }
-            
-            .buttons-container {
+            h1 { font-size: 2.2rem; }
+            h2 { font-size: 1.8rem; }
+            .message { font-size: 1.3rem; }
+            .button-container {
                 flex-direction: column;
                 align-items: center;
-                gap: 20px;
-                min-height: 180px;
             }
-            
-            .btn-yes, .btn-no {
-                position: relative;
-                left: 0;
-                transform: none;
-                width: 80%;
+            .yes-button, .no-button {
+                width: 100%;
+                max-width: 280px;
             }
-            
-            .btn-yes:hover {
-                transform: scale(1.05);
+            .profile-container {
+                width: 180px;
+                height: 180px;
             }
-        }
-
-        /* Animation for the card */
-        @keyframes cardEntrance {
-            from {
-                opacity: 0;
-                transform: translateY(30px) scale(0.9);
+            .page {
+                padding: 30px 20px;
             }
-            to {
-                opacity: 1;
-                transform: translateY(0) scale(1);
-            }
-        }
-
-        .friendship-card {
-            animation: cardEntrance 0.8s ease-out;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="friendship-card">
-            <div class="gif-container">
-                <img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxMTEhUTEhMWFhUXFxcYGRgYFxcYGBgZGBcXFhYXGBYYHSggGBolGxcaIjEhJSkrLi4uGB8zODMtNygtLisBCgoKDg0OGxAQGy8lICUtLS0yKy0tLS0vKystNS0tLSstLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLf/AABEIAOQA3QMBIgACEQEDEQH/xAAcAAABBQEBAQAAAAAAAAAAAAAAAQMEBQYCBwj/xABBEAABAgMEBwYFAgQFBQEBAAABAhEAITEDEkFRBCIyQmFxgQVSYpGh8AYTscHhctGCkqKzBxQjM/FDU7LC0pMV/8QAGgEAAgMBAQAAAAAAAAAAAAAAAAQBAgMFBv/EAC8RAAICAQMCAwYGAwAAAAAAAAABAhEDBBIhMUETIlEFI2FxgeEyQpGx0fAzocH/2gAMAwEAAhEDEQA/APZib0zJsM4HfWMiMM2nAZzVIigo/nBXWVJQoM8pQAD7+Pd9IHbXxO7B4t/L8VpB4ht4j8VgAAbusJk4ZPOAG7MTf0gEppmo1GWcucA1diZNcW8oAAC7ITBxywgZtUTBxygAaSZg1NW8oGbVE0mpy6wADbmHe9YGfUwGMHh3O961pWDwnZwP5pABE0tOPdUBxuhqHzlDotr4Mw6A/wCqUj6RzpC00U2qGFC4wdzOU5Z8Z03zte4l03pcBME+f3gG4Y/Eh8jQBV/Wo1OOMoV316EYZxB0m1UVAGWWAfKTt5xxoi1/MDlyASXL8ABLP7wGTwvbdli+/j3fSB216k4ZQeLf7vpStI5Wq6CobWIy6QGSVnQN3WEyajLGAatJvXh7eINlpKkl6vV4e0a3LkAViaNJYZR5JAF3VEwanLCBm1MDjlDNrpCUEWaS5U/5mJCQPlC6PahSWD3TUmo60y84gptdXQ625h3vWBn1DIDHODw7ne9a0rAz6pkkUOfWAqBF7VMgMc8IDrVk1OPtoCHkqQFDn5wHW25NTB/OAAJvaxkRhm04HfXxG7AZzVJQoM8pc4PEdvAfisAA+/j3fSE+SDMqZ8IXxb/d9KVpCfLSZqUxNQ4gAU+OR3fYg/Vt4fb1gPjru+xB+rbw+3rAAcd/L3wg4jbxEH/nn7lSDlt4n3KABCppja3uGfrAhWNnPP2Ya0hJOzVtZsaRxod6YTL3xiTTYtm6ySPBs73vlB+nYxP1+0RrVbElBlimcw2D1L+5w2nTASBNIdiljN3ctUUiAWJtWibw/wCnn7nWDgdjAxA0jSVFwggJyk/q/wC3GJWjE3Eley3rAEsbirYirImSiyMJVfOeXsxFtdDuuo5AJzxJPnd5CLA+LZ3ft6Q3pNuhCSu3UlKAHvKICQMbxMgKVgCOWSIehhCnSUiQBSwYF6CWFJHiInIQBgArACX0jIW/x5oFjeCSu1UP+2ktKjKWUpI5FoYs/wDE3RjNVjpAOCiLL0AtJxm82Ncbkazhkm7SdG447+XuVI5WlwQNs1HvpFP2L8VaLpRu2VqPnd1YKFdAqSpd14uuW3j7plF001aF2nF8leiyJLATiVZouzSX7xyHDyPlDoE9Ta3vvXjAUvJH8X2r1i1ms8zlx2KzSbNJtSQZAID5OoT9D5xI0IG8ssyJA9HNMKjzhi2JQq+ElVmGDistYXhg0w/ss/JJF5yt5yLpD5XXYevGIGK3Qqy54f8ATz9zrB+rYwP0+8RtAQoI19jJ3brziQT3tjD7feASkqdCnx7O775QHxyO77HSAnv7OHscID467vsdICAPi2t37esHE7eAgPi2t37esHPbw90gAOO/l7lSEZG8Z41rC/3M/cqQjo3q41rAAplJUyaYt5wUkqajQ5ZT5wEXZGb0OUBDapmTQ5YQAHh38/zWkHhG3ifzA25j3vWBtzEb0AAJyTJQqc8584AH2JEVwfy6wCeqJEVObSgAvSEmrx9tAA3alxqAAPQ0zfyeKteiKUsWgoFHi2qo0xwHXytzrTZgKjPGFBfWEgMM4DWGVwXBXaKoFbqDs5es6cnnkIsX3jsYD8RyEB/mMMiGDnCsdO2vgcICuSW52Qe2u1LPRbFVvbTQBqpDOSdlKQZOafgEx4n278RW+l2l+2IKQdSzqizGF16qaqqlzQSGm/xb7QKreysATdQj5pGF60cJHNKUnpaR53a6TgPOOZq80nLZHoh/S4lGO99WSV6SBgkdHPq8ML0wEuXMQyYIV2eozvZMGkJjX/D/APiJpFgyVqFuimuSLUCVLWqsSygomUxGEgi8HLG7iyk0pqpI+jPh74isNNS+jqZYAK0KZKw+YDuHxDjjFsJ7Emrg/l1j5m0DT7SxWm0slqQtJdKgWI5fsZGhBj3T4H+Kk9oWU2Rb2Y/1EiQVktI7pymxLTkT0cGffw+pz82DZyuhpQXmmSRUZ5+kcWdmkOpIARikSc5sJR2De1hICozxgd9fAYQyL2I+9uZelOccWdsC5qkYZZfQwtsHSVChFPSI6dHIAUWZxziTSMYuLbZLMpqmk0FWhDLbm9MW8+kKTdmZg0GUBF2Rm9OHt4gzAykqajQ5ZT5weE7eB/MB1dUzJocnlAzamJxgAPDv5+ta0hPmJElBziWEK25j3vWENsBIhyMYAFAuyE3xygAu6gmDjk8oALskzBqat5QCWqJpNTlnOAAbcw73rAz6mAxgNLu73vWtI5SoHVfVGMBNHTXtUyAxzaUDXpGTesDPJUkihz6nhAdbakBTB/OAgY0jSKFmIwhu20skggM3WHdKSVBzIigo44RDSly0ShrFGDjbLCzW4Fpjl6R07a+JwjlCWAI2hRPpStJx0O8No1H4rECzq+DwD49035mnaSR/3Sk8PlgWTf0RnUpJIADkyAFSTQCJvxASdL0omv8AmLd//wBlxI+Ein/O6Nep81Hm+r6tHIkrm/mdaP4Ui5X/AId6X8k2gNmpYDqsgp1jhRr3heMhH0PZIPzEkHMEZhjQ828o800v4FtdIt7e0SRZIOkLuXn2HVeWEja1mCQSHDnuvaUFVoizBEx3Y2SlqCUJKlGiUgqUeSRMx65oPwDoSAL1mq0UKqUtc/4EqCQODedY407sZWhXtJ0AMK2tgZpWkTJQZlKgMBkGErqq7CbMJ2t8J2uj6KnSLY3VqtEp+WGN1JSsuojecAMJAPV5U/Z2n2lhaotrJV20szeGRzSrNJEiMjHoXxr2gNM0XRUaMLytItXSkyIFmlSV3sglSg5owJpDfZH+F19SjbWqk2TkJCQL6xitzJAJcgTLERdQlacSG1XmPWNGtxaoRaszpSoDNwFD6w476+IwiD8gsEhagEgANcDAUA1Yh6NbL+ZdVexAUFKJDcFgXhxCW4w7l1Cxq2jneC/Uun38e76QO2vUnDL20V+m9pfJHzLRKlBwLyQGDydSSXGUn6UiVZaWgpFqhQVeynzkJ4RpjyRmriyrxySuuB4G7rCb4ZYwmxITvenv7Q0nSQBfS5esjLhKkNWtulDKSp03he8JLgcRU+UXBQl6DmlW4skkDWcH6e/OG9C0kqJsy2YUKcftPjDFukOS14VmWDVSKUaZ58xD2hWZJvEMCGq8qu/QQGzhGOO31JjbmHe9YUW5TIJdpPCNu7ne9a0rCi0UJAOBQsYBYQS2JjGAZJ2MT9fSAeCm97MA8Oxj9+NIAImk2pDpB1fr7MGhATekn+0SVJBw1PX96xyixSDe3DEm/iR2bRw5K2cD9PSAz25DD35QHxbG79qTpAfHTd9jpEGAGe3JWHvnHNybmS8OPOOj49rd9jjHFtahAKrRQSQHvEgADBzSsBKbR3x38vfCGbfSkWblS0pUzm8QGAqZ8ootM+KQP9pBUrvqN0dEs5lmBEOx7URaHWJClGd9tY0qJHgPSMNXkyYIblBv/hpihGbpujCD4It9LttIt1n/AC6LW1trSzCkk2h+Yta0FSHBQNYO+tIhhWNd2B8JWGim0UjWUsBIUqakpuJSQDgVKClFmqBQCLgOKUyNOhw+kOoWFD6jERzcWohk5XU6W2hbC0UQCQ0gQxz4YR0BCILgPWh5iR9RCxsyDm0SSCAWJBAIqOM8orLDtofMTYWqTZ26iQlJSr5dowJKrO1a6RdBVdJCgBMRawqEqNBJzMkASLGjmoygSsGR0aLZJVeuJAQmZSmYTecIASKFTkgVuziyRpAWApJBSaERX6PpqCq0srJV61siDapZiHDpBSZgKGy2VTN5FmgBZKdlYvFqXgQL3MhX9IjTlcGTpkiKjtbSlXglJPIpWKYhyAocRTOJ2n2jIIo7h5t/MEkA5OIpLOxIE0qHMEE5TNecYZ8m1UgSLay7RStBs7USKSkmrghp49Yqfg/SFD5qDQXVPPVwUrlR+EKVNOH/AIf06xK0lBBJRdUQGIOrdvBnwMV003CE5LtRtFe6mq44+hobTRgTqgg4s5/qxnnFZp9kQGS7mU1PXOvlLDhFxogIdCZEMf4S7DoQRyAhg2AUwEzN2waR+pPEjlHVxzU4qS7imLK1LnsRNEtFKsw+DhpVq9Dell5UiVoWkqe4ogoLzFXE2MhlExNimd0aha8M2DUPBvKERYIBvJSAnEtPzrFzOeWEk+BzhuZ++MKFL3RLDlCf2/fWsAC93ZwpTrALgJzRICvGATmmSRUZ5y5QA3piQFRnAC+sJAVGeMAA+9uZfjnA+9uYD8RB0+0KiAmlSnNiwGVQT0EV+mOFC0RusGwTRy2EyQRn1gGMeDersvjKappNBll6QGW3MGnCOLK1F0WhmFYZcOlILe2FkkrXNIBVyADn0gF2qIvanaSdHT/qayy9xIqWxnQDP7sDiu0e0LS2VetFUoN1PLM8TOtBKG9K0lVosrWdY8XYYJHAfucTEZNl8y0CN0TVxyB94GHseNQVvqZznSthZ31/7aXHeMh0x60jm00S1xIOYmOlJ+kaBKWDCOLWyB5xXxZCcs0+xVdm9rqszctHKRnNSOXeT58KNGkBBZSSKOCJgg/UGM/pWjBUjIihy/ccIZ7K7RNiooXsPMd01vAndP3eU34/tD2cp++wKpLlpd/ivj8O/wA+vT0Wu3eSZqLK1mSQwcA8FMJ8jIPwHGH4TRuzbVRCyEJSk6ySb14CbKADepiRpGjFIKkglHmU8808cMc4wxwyOG6Spj/iw3UmRrR2N2rFueEPWNkwDGRmfE7mU5TPk05Qy4JSHcE4GoAJqMHAiaBF49C032K7tHsWytlptTeRbJF1NrZqKLQJd7pIktLzuqBHCJuj2ZSkJKisgNeUEgnmEAJ8gIciNbLkSCZaqWO0t/UPL+bgYt1M0hAi9bDVBIArqsMS7ErrQSeLYmKTtWye6UrCFAveAJUzEFgmZrFN2pYKCUqNqq0SotrBQmzhgSXDAzhPNik5OQbNxZfFHbVmmxtEIUFLUCiVBekdbNnpGe+HbFrMqxUfQSHq8NaX2VbWjEIIQJkqKU9QFEPKLbsqwcISMSw4D/iImtmLb6jrccen2J8t2/4NdYhRUlixKC/mlvqfOJInsSavGItmZrILXWHk5LdS38MdWekXjNktPJ6SOcdPSRawo48oOTbQ+C80ySKjP2IXxDYxH4gBfWEgKjNpwO+vujdhgyB97cy/HOAWajNJYYCB9/d7vpCixJmFMDhlAAhN6Zk2GcD3tehGGbTgJvTVIigo/nHFragC+uRFBnlKpnACVkLtB7wtGkWSRkQS3m/pxhCkEglJAXqqlWUi4cAsGnOQhu301ay4SkSYhYXPyEvWERpBShSbRLSdKgXSSnWANCJirNAPxjJRSY5oK7lkXmb5Q3UFTesR/ie0+Xo913NqpIPCZWroQCOsO9l2ayfm4OshNSbxJvMKCg6cYqPjC1HzEIBokqPNZYdRcP8ANGmKNzQrqKUmigJh/sVEio1USfVh6B+sRNILJMWPZIZCR4E/QQ5lfBztQ+EidBBBCwuNaRZuHxEU3aVjK+KiR5fgz5PF9EC3sw5BofoYtGVOyL2yUkXfwX2j8yz+Uo61iBd8SMB/CZcimNI769CMM482+HLY2WlWU964eN7VA/nu+Ueku+sZKFBn0rFM0UpWujOohi30ZKnWzK4CeXUcIiWjoDrDDMTHXFPXzMWXi3u76UrSK/t20AsjPWWQGymFGXJPrCeZJRcn2N8U3dEb56V6qFgk1uqBIFSZFxIM+ZEd6QLqkEJdIBAZgEmTFiaMCJZ8Yhdio1irgR5Efe8OhifpSqCFoyuFsc/NQwhamF9QBxCP/pQHoOsQO0dLuAizs1LtCN13D0Kl1iSbSbuyRU5mjdPrLOC1tGbWAfMEk8g4+kU3M1ikndFOdF0i1b5n2CRyTM9TOLnsnR2UCllSKR3b0hI4hIdzyFZRHtTsiZvEAX5DibgZ24gYReaHo6UqUlyBdTMnF1vwDu5aM1CM5qD7mWedRHbVGpdA2ccVOZnmTPrDNnoqjkOcTSL0lSAoaP5wHW2pNTB/OOsuFSEo5ZRVI5s0yBpdFM2nHTvr4jdgM9ZUlCgzxEucD7x2sE/isBlYPv4930g+QFTvM82gfe3u76UrSE+UkzKmJqHEACme3I4RG07R1LAmAsUBoR0oaziSfHXd9iD9W3h9qSrAWjJxdorbPQ7QVIfIKI+ifqYRWiqWq6zJTtAC7fNWzKRmTM0o8WfP/c99KQctvH3SkBp48hEhtjaxGA9mMB2vbX7e1UKXyByTqOOBuv1j0AeHa3vvWVY82WJkGoLHmJGGdMuWzCRH0rZ6iJWgaUEoQTTZJyYEEng6Yj6SNUxz2ZaTKc9YfQ/b1hjIrjYrqI+W/Q0MERdAXIo7rN+k7PkxHQZxKhUWCIOnqYvy8nYnoJxOiDpibxUDQhvMNEorLoFj2eVfJtU1FrPJkaQST0vPyQY3xzO3gIy3Ya72jIJE0rXeBz+aoL6MT5xe9nMElDkqTsk4JaQJ4G8J4AQosjcnF+rO24e6jL4Ie0vSU2aTaLLKGH2A5RlNI0xek2rIqccEJxPHnyGUOfEFqbW2CbySlCbx1gAaOXFTQNw4xPTaWdhZJVZpF5bMMVEh3JagDn8mFJt5p7Oy/wBm0IrHHfIlaHYBDpTRLJHIAKc5l1KJPGGLab1nlWKLSrdZkbRVSSxKBOZDJZw5xeONBW1ogFaglRKS6lM10nEsCSAHrOGMmne27MMWvhLLsSfPct0rReCRrKdgBRMmYYJPMvOJ1noizXUHQq6AOBznyim0kXbRTSIVLgzFMuEo0mi24WgKGOGRxHQxyMmWSbSHpza6Fb2voQSkLSNl7xqWLTJqwIHJzD2h6YLRn204UvDFuMgeYyixiq0rsfGyLeE06ETTyn0jGM2pbl1MrUlTLhFoFCZ1cM+RGB4R2Z7cjh78oz6dKXZn/VSR4qg4AKILK4Tf1EXGjaWlYdXRpjjMdKtHa0+pWVV3F54muhIM5qkrAfT1g4nbwEIT39vd+1JVhee3h7pDJkHHfy98IQpRvGePOF/ue+lITU3trGtekACmUlzJpwgpJU1Ghyy9YCLslTJocvOAy1TMmhyeUABw38/zygbdG3ifzA25vd715wNub3egABOSZKFTnn6xgO2LG5b2o8ZV/Pr/AFU3SN+A+qJEVObSjJ/GFmPmIWBVJSeaC48758o307qVESM+sOCOEVyVEEEVEx79OsWUQLZLEiH1zwUasttGtgShYodU8L0m53wkecWkZRFqpL3WnNjRxsq4EEDyjUWFqFpChQh+XDmKQpkg4sRljcDuImlJm+cS4a0lLp5RQzkuA7P0q7fszRYVd4Lu0nmB5jxRoEizBdRLymsMJO2ATJzMRklDIscDkRMHoZxok9oEWKbUG8VSuEjbmFAKAkxBeskmUL5MS3Wu51dDqE8bjJ9P2F046Ne+YoJUvAAuVNLYBZWEzIYyEV9talaitdWYDBKasOJYOcWGQhC5JUo3lGp+wG6kZfUkksaUuTRbHhUHfcW1OqeRUuERlF5w52bY31lRoJDz1vMhv4eMMWi2BOQJ8otOyrG6gDGQ5sJnqXi+V0qNfZWLdN5H2/dnWmpZQOBSG5gsR0cdGh7szTflqnsKrwPe/fplDemKBSnFy/QpL/8ArERJaR6HP8x5/VxSyujszXY1c0zmpJnmRy7w4Vyeg6sbVKxeSoKGYLxT9kaddIs1bJkk905cjhkeco/bmiqsV/PsnAUddpTz5HjjzhYw280aMiI1pZJQnVASA5BAe69Q2VZcaRB7P7ZCmFoweiqD+IYc6cos7VD4epDVeXGUb6aezJd0FNPki6Jpt5V3aIBLjAat318vWOrS3WTJU8pXuGB9CYiKsLlq1QpLplQpa8luRf8A4iz7PUClmAU5ZQala+kdrHkjkW6IZNkfMlZJQDJJ/wBxpn8wX0iSg5xPGFbc3u9684Q2yRIpcjGU4uJCtdlV8coGu6lXxyeUA1ZJmDU1bygEtUTSanLrSABANz+r1hfBlvQjbu73vzSBt07Pe/NIAFa9q0bHPCKX4tRfsLzN8taTzvf6f/sDF0Z6pkkUOeAnyiJ2vZfMsbRJkbiruDljdrxAi0HUkwZ5/EbTE0PSJIMc2iXBEdNFCvi07E0pj8s0LlPOqk/f+aKsiD3yImCOMTOO5UUnHcqNbAREHszTvmBlbYE+I7w+4wPMROhFpp0xJqnTK8iDQ7Y3ygnVF4pGRIRe5uzjLWzl3bjWMMaOtlLIzA/oT+8SZRe1ssbW1A5xCUXnATHK1gBz7wAGZeIIbcmIReUE8lHkDq+am8jF9ZIYARW9l6MdpVanngkcAP3xi0hecrZ6nSYPAxKL69X8/sVWmaRdtLuCXf8AiZXkA3rHakvELtFT2qz4m/lAT9of0O0dLYj6Ye+EcLUPdkbNpcseSXH1+8aHQli2sSlc6oV9jzZjzjOip4z8pH7Ra9hWjLUM0v8Aylv/AGjAymuCkskGztFWSqgnzGPUTi/7E0s/7Zo2r0qn7jkeEQPiixu2tnaDeDH+Ej6gt0hqztbigrukHoKjqHHWJYPzRNLb2b3TilYL/qdCv6VGJjNqZ70RNJ2F8lfQxL8I2TvfmkdPQPiS+Inl7A25/V6wfPuyuu0nz9IPDu971rSsHzVCQS4FCxnHQMgEtiYxgEpJ2MT9fSAeCm97MA8Oxj96zo0AHK1MM0Z4+3gs1gjJHq8NaTZPNOyPeMLoySBrbH36TiTTbHZd8jxyVJOB+npFJ8WaWtNmlIlfU14S1QCSAczLoFRdnxbG79qTpDWl6Mi0SUWwdJpUEcQUzB4xMWk02Zs83skskDIAeQjiyXrKGRHkzfUGLvS+wlpSFJN4FpY++UUtpoy0Le6WMiAHPAsJ/wDJjfHrtPk4Ukn6Pgl4ZrmiNpI1jDUO6aWUB09CYaeHotNcGTFQoggpLETBjSaDpYtEuJESUMj+2RjNRcfD+gKWbVQcKCJVmSXEnD7JHWMM+2rb5KywvJ06kjSDrGGkpbqXhbV0tfDOzGqVPRlZnIseEcrtGLVOQrz4DiZQvfBz3imp7GnfoKpQEzIQ5oejlZCjTdGT7x4tQYdZd6N2cVayy2TUTxGZ4noKvN0NJSA7Mr0ViPTzHGMZ5L4R3tD7PWL3mT8XZen3JSEABhCsSwFSWHM/b7AwRM7KQkrJVuiXNTgHoAfOMkPTlti5DHb3ZANnfAa0QkBu+lIaeah+MmzWhq1uYI+/2j0M+Pa3ftSVYwVvo/y9IUil1SmGQYkehEIa3El5l3FdPkbTTJG8OR+qYsuw0/6pOSD6qT+xisRUnp5fl/KL3sOyZJV3jLklx9X9I53Y1n0I3xakfLTne+xiuIiZ8T2jrs7Mcz1P7JMQ1AswqZDmZCJ9CYfhRpUzs0g7wQDyLXj5OYncBsYmI1mh1BtlFeZDN0ST/MIk8tjH3WOroYNY9z7iOV2w4bmfvjChSxsiWHKE/t++tYBf3dnClOsOmYCexICvGATmmSRUZ5+kAN6aZAVGflAC+sJJFRnjAAcdzL8c4OJ2MBA+/u9305QPvbvd9ygADKappNBll6RB7Z042FkVkBSiWswaOXM6SABLYtE4ltYzBoMsYzfxSolaLMFyEKXNyBeN1Eui4vjVySIZUI+IVys1JvAM5EmYMA8TLPtKyVImeR/aKi0sAhMhTzJ+5J9TEb5BSJzUan69MIwz+xsGV3FuL/X+/qb49VOHD5NN/pnu9C30iJpNih6ep/eM4gqBLKIoJEicz9xCqtl95XmYTj7ByRdqaf6/c2esi10L66gZdT+8XfZKUps70mJJJGQlhyMYM2yu8rzMbq2Hy7FFmKsBzZn81ED+Ixo9E9IvEk746L+/QI5fF4RECnKgoaqiZFmczKONfrlCo0VA2UJHIADyEocFmGYz++L83nHN+7tU73/1keNOVI2xqSglJ2x2vQchm64UOJbmdYHzMPQRYE6CLbsqzCUXlB75dPAUHQ16xX6Lo99iQbjzOfhTnxOE8YvWu7U3pw9vFkhPU5FWxAZSVNRocsvWMX2oknSrWdGc/wACR5yMbG2tBZpN8vIl8gBGPJJUTVSlE5klRkOOAhLXyW1RM9MuWxzRNHK1BCZcckip94kRqEIAAADAAADICkRuztD+WnxHaP0A4D98447VUsoKLIFVoqQAaQNVE4Bsc2jlpNukaSdszukW/wAy2WsbILDLIeg/qiX2ZYG0tQEtq6xfBqcy7ShR2RcsluddAe6mhAmS9S4BApMNOOeyNICLRJBZJ1ScGLHycD1jWEV4ijP1Lydxe01NkgAauyNp6nEk5kx1xGxiIiKJtFLu6qUSIchzdCphJDliMWpV5VejacbPSRZlRKFiaCq9cVrUJ3SwIHiFI6/jKMlGuOliag3z9S/47mX45wBCzNJYYcoH393u+nKFFkozCmBoJyjczEe9OjYZwPe16Nhm04Cb01SIoM/OB31jJQoM+lYAB9/+n0gdtfPdgfe3u76UrA+9vd38VgAHu61XwyecUekaAVLXaVvNzDBwG/SpPUGLymsJqNRljSETqzTMmuLeXuUWjKgMnpOhO3Avzka+b9BEK20aNnb6KkyE/FlzaK3SezSKTGYmI3hlK0ZA6KxVxL+gH2hhdjGkttEiFa6LDCmQVOhaPetUDNafqHjWaWu9aHJPv6lX8ohjQeyxZo+csF3QUD+IeZIdhB/lFEtaCd4OMBqhc83PSeNY52sl4k4pdFy/p9/2OhpId2Ku0LEpEgCXNOgx9BxgtdGJG0ScgWB4Bvu/GH12LBsLyG4OoOOX78IkBEUHN9dCvsLOgTqykG1SOCd0jLCHRZKSoLLLA3Sl08yh9b6jB6Q+NHdxTWdJyLAv5lXmYesg4emYyIkR5wFZZCXovaCakMVUD6s6XVY8pGJmxxvent4pzYEOQHSdpID81AfUY86zNFvoDoF9JaTuQPCetD5hosmI5cUVzFnHbirliUid4pn1BI8gfOKzsGyClqV3GA5kTPQfUxP7YY2JuawCkknIuEscjOhiD8Jl7O0zNoT5pTHJ1/8AkXy/kti4xsuSSSEpkTN+6M+eX4h2zshsCWJVio0c+8IasFi6SogJUXvGQ8IcyoB6w4i2SrUvBhi4eHNLijjivVmE22LaWd9g90poqr4EEYgtT7gGMl2h2cuyJUhBNmTNIchL5ZDn61jYEXpKkBQ5+cBN7a1Wpg/nF82mhl5fUMeVwMbZdvLCQErSGxUlyMtYFj1eJvYOgqVaf5hRKmJVeMr5IbVGU3fgAOGiNmCbxSAoUDBzjjOO33jtd38VikNK005Sui8sypqKqwff/p9IPkXp3mebZQPvb3d9KVpCGySZlTE1EpQ2YCme3IinGCs1SVgM8vWA+Ou77EH6tvD7UlV4ADjv5e+EHEbeIg/uYe6Ug5bePulIAASmmajUZZ+sAlsTJrwg/Tt733rKsA8Fd72esAAJSRMGvCASknYxP1+0A8Gzvezwg/TsY/fjlAA1aaMk4avex9vET/8AmC8CTqZ58IsP7fvrWDnsYe6xZSaAQh5KkkbJ+npFdaoN9b5j/wAUxZfq2d37UnSEujfxp7HSKmmOex2V1roxIYCZo8piY9Wh9OinGRyxiX+va3fY4wfq28PdM4iizzyYyNGDeLL3wjmzswlZAAJIvNViGSr0uesSP7nvpSG7VJdJTtgz5EEGssQekSUU2+rHBKaZqxGXswwP9M6k0qM/Co4ciSevMM/+ja3vvXjB+j+L2esBVMjaXooUlQQWvAgqr5jFqjEecZ74ZtblraWSpE4cUEuOMi/SNV+jZ3vvWdIpu2uyipQt7CS0sf1Nzxw4iUJ6vA8kbXVG2LJ+VkvRbAKCSSbqU3JEi6oSXSbky5AQ32gLqVzLXSpBJchQkGJnMkeopKIiLM2r2lio2aywtEGWsO8GrxILhqQxa6HbqUErW9Hm4SJsSEgSqwz6mFJZo5I7VHzF1CnbfBfaHbfMs0qXIECmdDDxntyIpx9yjiyswlISrYAATyGbcI7Pjru+x0jrRuuRZ9eAM5qkoUGeXrBxO3gIP1be79qSrBz28PdIkgOO/l74QhQgzUWOPOF/ue+lITU3trGtekABYm8CTMikFnNJUaih6QQQAA2L29n1aBWwFb2cEEABaySFCRLOejwtvqgFMnrCQQAdWwukASBrCWgZQSKGo84IIAAjXu7uXR4VIdZTgMISCAAsg6iDMCg6tBYaz3ptT1gggASxmkkzIoekCJpKjUUMEEABuXt7Pq0C5JChU4wQQAFrJIIkTU5yhbfVa7J68aQQQAFqGUAJA1HVoVYZYSKHCEggA4XYpUu6pIIFAQDg8dWFmLxSAAkPIBhhlCQRFIDqxF4kGYFPOCw1nvTakJBEgFlNJUZkOx6PAk6hVvZwQQAB2L29n1aHbOyBAJEzCwQAf//Z" alt="Cute animated friendship GIF">
+    <!-- Page 1: Friendship Agreement -->
+    <div class="page active" id="page1">
+        <div class="hearts-bg" id="hearts1"></div>
+        <h1>Best Friendship Agreement 💝</h1>
+        
+        <div class="message">
+            I have a very important question for you... <br>
+            Will you be my official best friend? 🤗
+        </div>
+        
+        <div class="agreement">
+            <h3>Terms & Conditions</h3>
+            <ul>
+                <li><i class="fas fa-check-circle"></i> Unlimited meme sharing rights</li>
+                <li><i class="fas fa-check-circle"></i> 24/7 emotional support access</li>
+                <li><i class="fas fa-check-circle"></i> Coffee chat privileges</li>
+                <li><i class="fas fa-check-circle"></i> Secret sharing confidentiality</li>
+                <li><i class="fas fa-check-circle"></i> Adventure buddy status</li>
+                <li><i class="fas fa-check-circle"></i> Food sharing agreement</li>
+                <li><i class="fas fa-check-circle"></i> Netflix & chill permissions</li>
+                <li><i class="fas fa-check-circle"></i> Forever friendship guarantee</li>
+            </ul>
+        </div>
+        
+        <div class="button-container">
+            <button class="yes-button" id="yesPage1">
+                <i class="fas fa-heart"></i> YES! Absolutely!
+            </button>
+            <button class="no-button" id="noPage1">
+                <i class="fas fa-times"></i> No, thanks
+            </button>
+        </div>
+    </div>
+
+    <!-- Page 2: Your Picture Request -->
+    <div class="page" id="page2">
+        <div class="hearts-bg" id="hearts2"></div>
+        <h2>Are you sure? 😊</h2>
+        
+        <div class="message">
+            Look! This is me asking sincerely... <br>
+            Don't break my heart! 💔
+        </div>
+        
+        <div class="profile-container">
+            <div class="profile-frame"></div>
+            <!-- YOUR IMAGE HERE -->
+            <img src="https://i.ibb.co/1tsf4P23/Whats-App-Image-2025-05-21-at-3-14-20-PM.jpg" 
+                 alt="Your Picture" class="profile-pic">
+        </div>
+        
+        <div class="message" style="background: #e6fffa; border-left-color: #38b2ac;">
+            I promise to be the best friend ever! <br>
+            Please give me a chance! 💫
+        </div>
+        
+        <div class="button-container">
+            <button class="yes-button" id="yesPage2">
+                <i class="fas fa-heart"></i> OKAY, Yes!
+            </button>
+            <button class="no-button" id="noPage2">
+                <i class="fas fa-times"></i> Still No
+            </button>
+        </div>
+    </div>
+
+    <!-- Page 3: Your Picture Crying -->
+    <div class="page" id="page3">
+        <div class="hearts-bg" id="hearts3"></div>
+        <h2>Again think about this 😢</h2>
+        
+        <div class="profile-container">
+            <div class="profile-frame"></div>
+            <!-- YOUR IMAGE HERE -->
+            <img src="https://i.ibb.co/1tsf4P23/Whats-App-Image-2025-05-21-at-3-14-20-PM.jpg" 
+                 alt="Your Picture" class="profile-pic">
+            <div class="crying-overlay" id="cryingOverlay">
+                <div class="tear tear-left"></div>
+                <div class="tear tear-right"></div>
             </div>
-            
-            <h1>Friendship Request</h1>
-            
-            <div class="question">
-                Do you want to be my friend? 🤝
+            <div class="sad-message" id="sadMessage">
+                Please don't say no... 😭
             </div>
-            
-            <div class="buttons-container">
-                <button class="btn btn-yes" id="yesButton">
-                    <i class="fas fa-heart"></i> Yes!
-                </button>
-                
-                <button class="btn btn-no" id="noButton">
-                    <i class="fas fa-times"></i> No
-                </button>
-                
-                <div class="hearts" id="heartsContainer"></div>
+        </div>
+        
+        <div class="message">
+            You're making me sad! <br>
+            Please reconsider your decision! 💔
+        </div>
+        
+        <div class="warning-message" id="warning3">
+            <h3><i class="fas fa-exclamation-triangle"></i> Warning!</h3>
+            <p>This is your last chance to accept nicely!</p>
+        </div>
+        
+        <div class="button-container">
+            <button class="yes-button" id="yesPage3">
+                <i class="fas fa-heart"></i> I accept!
+            </button>
+            <button class="no-button" id="noPage3">
+                <i class="fas fa-times"></i> No
+            </button>
+        </div>
+    </div>
+
+    <!-- Page 4: Button Dislocation -->
+    <div class="page" id="page4">
+        <div class="hearts-bg" id="hearts4"></div>
+        <h2>You can't reject my proposal! 😤</h2>
+        
+        <div class="message">
+            The "No" button is getting disabled! <br>
+            You should accept my friendship now! ✨
+        </div>
+        
+        <div class="profile-container">
+            <div class="profile-frame"></div>
+            <!-- YOUR IMAGE HERE -->
+            <img src="https://i.ibb.co/1tsf4P23/Whats-App-Image-2025-05-21-at-3-14-20-PM.jpg" 
+                 alt="Your Picture" class="profile-pic">
+        </div>
+        
+        <div class="final-message">
+            <i class="fas fa-lock"></i> The "No" option is being removed! <br>
+            You have to click "YES" to proceed!
+        </div>
+        
+        <div class="button-container">
+            <button class="yes-button" id="yesPage4" style="width: 300px;">
+                <i class="fas fa-trophy"></i> ACCEPT FRIENDSHIP
+            </button>
+            <button class="no-button" id="noPage4">
+                <i class="fas fa-ban"></i> No (Try me!)
+            </button>
+        </div>
+        
+        <div class="message" style="background: #feebc8; border-left-color: #dd6b20; margin-top: 30px;">
+            <i class="fas fa-exclamation-circle"></i> Next click on "No" will make it disappear!
+        </div>
+    </div>
+
+    <!-- Page 5: Celebration Page -->
+    <div class="page" id="page5">
+        <div class="confetti" id="confettiContainer"></div>
+        <div class="hearts-bg" id="hearts5"></div>
+        
+        <h1>Congratulations! 🎉</h1>
+        
+        <div class="message">
+            Yay! We're officially best friends now! 🥳<br>
+            This calls for a celebration! 🎊
+        </div>
+        
+        <div class="profile-container">
+            <div class="profile-frame"></div>
+            <!-- YOUR IMAGE HERE -->
+            <img src="https://i.ibb.co/1tsf4P23/Whats-App-Image-2025-05-21-at-3-14-20-PM.jpg" 
+                 alt="Your Picture" class="profile-pic">
+        </div>
+        
+        <div class="message" style="background: #c6f6d5; border-left-color: #38a169;">
+            <h3>Friendship Certificate</h3>
+            <p>This certifies that we are now official best friends with all rights and privileges! 🤝</p>
+        </div>
+        
+        <div class="friendship-perks">
+            <div class="perk">
+                <i class="fas fa-laugh-beam"></i>
+                <p>Endless Laughs</p>
             </div>
-            
-            <div class="instructions" id="instructions">
-                (Try to click the "No" button... if you can! 😉)
+            <div class="perk">
+                <i class="fas fa-heart"></i>
+                <p>Mutual Support</p>
             </div>
-            
-            <div class="friend-count">
-                <i class="fas fa-users"></i> <span id="friendCount">1,234</span> friendships started here!
+            <div class="perk">
+                <i class="fas fa-mug-hot"></i>
+                <p>Coffee Chats</p>
             </div>
+            <div class="perk">
+                <i class="fas fa-share-alt"></i>
+                <p>Meme Sharing</p>
+            </div>
+        </div>
+        
+        <div class="button-container">
+            <button class="yes-button" id="yesPage5" style="background: linear-gradient(135deg, #9f7aea, #805ad5);">
+                <i class="fas fa-heart"></i> CONFIRM FRIENDSHIP
+            </button>
+            <button class="no-button" id="noPage5" style="display: none;">
+                <i class="fas fa-times"></i> No
+            </button>
+        </div>
+        
+        <div class="message" style="background: #fed7e2; border-left-color: #d53f8c; margin-top: 30px;">
+            <i class="fas fa-star"></i> Friendship Level: MAXIMUM! <br>
+            <small>Status: Best Friends Forever (BFF)</small>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const yesButton = document.getElementById('yesButton');
-            const noButton = document.getElementById('noButton');
-            const heartsContainer = document.getElementById('heartsContainer');
-            const friendCount = document.getElementById('friendCount');
-            const instructions = document.getElementById('instructions');
+        // Current page tracker
+        let currentPage = 1;
+        let noClickCount = 0;
+        
+        // Create floating hearts for all pages
+        function createHearts(containerId, count = 20) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
             
-            // Make the friend count number animate
-            let count = 1234;
-            setInterval(() => {
-                count += Math.floor(Math.random() * 5) + 1;
-                friendCount.textContent = count.toLocaleString();
-            }, 3000);
+            for (let i = 0; i < count; i++) {
+                const heart = document.createElement('div');
+                heart.className = 'heart';
+                heart.innerHTML = '❤️';
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 10 + 's';
+                heart.style.fontSize = (Math.random() * 20 + 20) + 'px';
+                container.appendChild(heart);
+            }
+        }
+        
+        // Create confetti
+        function createConfetti() {
+            const container = document.getElementById('confettiContainer');
+            if (!container) return;
             
-            // Create floating hearts
-            function createHearts() {
-                for (let i = 0; i < 15; i++) {
-                    const heart = document.createElement('div');
-                    heart.classList.add('heart');
-                    heart.innerHTML = '❤';
-                    heart.style.left = Math.random() * 100 + '%';
-                    heart.style.animationDelay = Math.random() * 4 + 's';
-                    heartsContainer.appendChild(heart);
+            const colors = ['#ff6b8b', '#6eb5ff', '#a3ff9e', '#fbbf24', '#c084fc'];
+            
+            for (let i = 0; i < 150; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti-piece');
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = Math.random() * 15 + 10 + 'px';
+                confetti.style.borderRadius = Math.random() > 0.5 ? '50%' : '0';
+                container.appendChild(confetti);
+            }
+        }
+        
+        // Switch pages
+        function goToPage(pageNumber) {
+            // Hide all pages
+            document.querySelectorAll('.page').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show target page
+            const targetPage = document.getElementById(`page${pageNumber}`);
+            if (targetPage) {
+                targetPage.classList.add('active');
+                currentPage = pageNumber;
+                
+                // If going to celebration page, create confetti
+                if (pageNumber === 5) {
+                    setTimeout(createConfetti, 100);
                 }
+                
+                // Change background based on page
+                const colors = [
+                    'linear-gradient(135deg, #ffafcc 0%, #a2d2ff 100%)',
+                    'linear-gradient(135deg, #ffcce6 0%, #b3e0ff 100%)',
+                    'linear-gradient(135deg, #ffb3ba 0%, #a2d2ff 100%)',
+                    'linear-gradient(135deg, #ff9aa2 0%, #8ac6ff 100%)',
+                    'linear-gradient(135deg, #ff8fab 0%, #6eb5ff 100%)'
+                ];
+                document.body.style.background = colors[pageNumber - 1] || colors[0];
+            }
+        }
+        
+        // Initialize hearts for all pages
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create hearts for each page
+            for (let i = 1; i <= 5; i++) {
+                createHearts(`hearts${i}`, 15);
             }
             
-            createHearts();
+            // Page 1 buttons
+            document.getElementById('yesPage1').addEventListener('click', function() {
+                goToPage(5); // Skip to celebration page
+            });
             
-            // Yes button behavior - navigate to yes.html
-            yesButton.addEventListener('click', function() {
-                // Add celebration effect
-                this.innerHTML = '<i class="fas fa-star"></i> Yay! <i class="fas fa-star"></i>';
-                this.style.backgroundColor = '#fbbf24';
-                this.style.transform = 'translateX(-125%) scale(1.2)';
+            document.getElementById('noPage1').addEventListener('click', function() {
+                noClickCount++;
+                goToPage(2);
+            });
+            
+            // Page 2 buttons
+            document.getElementById('yesPage2').addEventListener('click', function() {
+                goToPage(5); // Celebration page
+            });
+            
+            document.getElementById('noPage2').addEventListener('click', function() {
+                noClickCount++;
+                goToPage(3);
+            });
+            
+            // Page 3 buttons
+            document.getElementById('yesPage3').addEventListener('click', function() {
+                goToPage(5); // Celebration page
+            });
+            
+            document.getElementById('noPage3').addEventListener('click', function() {
+                noClickCount++;
                 
-                // Create explosion of hearts
-                for (let i = 0; i < 20; i++) {
-                    const heart = document.createElement('div');
-                    heart.classList.add('heart');
-                    heart.innerHTML = '❤';
-                    heart.style.left = '50%';
-                    heart.style.fontSize = '32px';
-                    heart.style.color = '#ff6b8b';
-                    heart.style.animationDuration = '2s';
-                    heartsContainer.appendChild(heart);
-                    
-                    // Remove heart after animation
-                    setTimeout(() => {
-                        heart.remove();
-                    }, 2000);
+                // Show crying effect and sad message
+                document.getElementById('cryingOverlay').classList.add('show');
+                document.getElementById('sadMessage').classList.add('show');
+                document.getElementById('warning3').classList.add('show');
+                
+                // Wait then go to page 4
+                setTimeout(() => {
+                    goToPage(4);
+                }, 3000);
+            });
+            
+            // Page 4 buttons
+            document.getElementById('yesPage4').addEventListener('click', function() {
+                goToPage(5); // Celebration page
+            });
+            
+            document.getElementById('noPage4').addEventListener('click', function() {
+                const noButton = document.getElementById('noPage4');
+                noButton.classList.add('dislocated');
+                noButton.innerHTML = '<i class="fas fa-running"></i> Running away...';
+                
+                // Show final message
+                const finalMsg = document.querySelector('.final-message');
+                if (finalMsg) {
+                    finalMsg.classList.add('show');
                 }
                 
-                // Navigate to yes.html after a short delay
+                // Show message that user must click YES
                 setTimeout(() => {
-                    window.location.href = 'yes.html';
+                    alert("The 'No' button has disappeared! You must click 'YES' to proceed!");
+                }, 1000);
+                
+                // NO AUTO-ACCEPTANCE - User must click YES
+            });
+            
+            // Page 5 buttons - User MUST click to confirm
+            document.getElementById('yesPage5').addEventListener('click', function() {
+                // Create more confetti
+                createConfetti();
+                
+                // Change button to show confirmed
+                this.innerHTML = '<i class="fas fa-check-circle"></i> FRIENDSHIP CONFIRMED!';
+                this.style.background = 'linear-gradient(135deg, #48bb78, #2f855a)';
+                this.disabled = true;
+                
+                // Show success message
+                setTimeout(() => {
+                    alert("🎉 FRIENDSHIP OFFICIALLY SEALED! 🎉\n\nWe are now best friends forever! Thank you for accepting! 💖");
+                }, 500);
+                
+                // Add restart button
+                const restartButton = document.createElement('button');
+                restartButton.className = 'yes-button';
+                restartButton.innerHTML = '<i class="fas fa-redo"></i> Start Over';
+                restartButton.style.marginTop = '20px';
+                restartButton.style.background = 'linear-gradient(135deg, #9f7aea, #805ad5)';
+                restartButton.addEventListener('click', function() {
+                    location.reload(); // Reload the page to restart
+                });
+                
+                // Add restart button to page
+                setTimeout(() => {
+                    if (!document.getElementById('restartButton')) {
+                        restartButton.id = 'restartButton';
+                        document.getElementById('page5').querySelector('.button-container').appendChild(restartButton);
+                    }
                 }, 1000);
             });
             
-            // No button behavior - move on hover (desktop) or touch (mobile)
-            noButton.addEventListener('mouseover', moveNoButton);
-            noButton.addEventListener('touchstart', function(e) {
-                e.preventDefault();
-                moveNoButton();
-            });
-            
-            // Prevent clicking on the No button
-            noButton.addEventListener('click', function(e) {
-                e.preventDefault();
-                e.stopPropagation();
-                moveNoButton();
-                instructions.textContent = "I told you it's not clickable! 😄";
-                instructions.style.color = "#ff6b8b";
+            // Add fun hover effects to no buttons
+            document.querySelectorAll('.no-button').forEach(button => {
+                button.addEventListener('mouseenter', function() {
+                    if (currentPage === 4 && this.id === 'noPage4') {
+                        // Make button "run away" on hover on page 4
+                        this.style.transform = 'translateX(20px)';
+                    }
+                });
                 
-                // Reset instructions after 2 seconds
-                setTimeout(() => {
-                    instructions.textContent = '(Try to click the "No" button... if you can! 😉)';
-                    instructions.style.color = "#718096";
-                }, 2000);
-            });
-            
-            function moveNoButton() {
-                const container = document.querySelector('.buttons-container');
-                const button = document.getElementById('noButton');
-                
-                // Get container dimensions
-                const containerRect = container.getBoundingClientRect();
-                const buttonRect = button.getBoundingClientRect();
-                
-                // Calculate max positions to keep button inside container
-                const maxX = containerRect.width - buttonRect.width;
-                const maxY = containerRect.height - buttonRect.height;
-                
-                // Generate random position
-                const randomX = Math.floor(Math.random() * maxX);
-                const randomY = Math.floor(Math.random() * maxY);
-                
-                // Apply new position with smooth transition
-                button.style.transition = 'all 0.5s ease';
-                button.style.left = `${randomX}px`;
-                button.style.top = `${randomY}px`;
-                button.style.transform = 'none';
-                
-                // Change button color temporarily
-                const colors = ['#a0aec0', '#f56565', '#ed8936', '#ecc94b', '#4299e1'];
-                const randomColor = colors[Math.floor(Math.random() * colors.length)];
-                button.style.backgroundColor = randomColor;
-                
-                // Reset color after a short time
-                setTimeout(() => {
-                    button.style.backgroundColor = '#a0aec0';
-                }, 300);
-                
-                // Add a funny message sometimes
-                const messages = [
-                    "Nice try!",
-                    "Too slow!",
-                    "Almost!",
-                    "Not today!",
-                    "Nope!",
-                    "Try again!"
-                ];
-                
-                if (Math.random() > 0.7) {
-                    const message = messages[Math.floor(Math.random() * messages.length)];
-                    instructions.textContent = `"${message}" - No button`;
-                    instructions.style.color = "#4299e1";
-                    
-                    setTimeout(() => {
-                        instructions.textContent = '(Try to click the "No" button... if you can! 😉)';
-                        instructions.style.color = "#718096";
-                    }, 1500);
-                }
-            }
-            
-            // Initialize the No button position
-            setTimeout(() => {
-                // For mobile, adjust the button positioning
-                if (window.innerWidth <= 480) {
-                    noButton.style.position = 'relative';
-                    noButton.style.left = '0';
-                    noButton.style.top = '0';
-                    noButton.style.transform = 'none';
-                    yesButton.style.position = 'relative';
-                    yesButton.style.left = '0';
-                    yesButton.style.transform = 'none';
-                }
-            }, 100);
-            
-            // Add resize listener to adjust for mobile
-            window.addEventListener('resize', function() {
-                if (window.innerWidth <= 480) {
-                    noButton.style.position = 'relative';
-                    noButton.style.left = '0';
-                    noButton.style.top = '0';
-                    noButton.style.transform = 'none';
-                    yesButton.style.position = 'relative';
-                    yesButton.style.left = '0';
-                    yesButton.style.transform = 'none';
-                } else {
-                    noButton.style.position = 'absolute';
-                    noButton.style.left = '50%';
-                    noButton.style.top = '0';
-                    noButton.style.transform = 'translateX(25%)';
-                    yesButton.style.position = 'absolute';
-                    yesButton.style.left = '50%';
-                    yesButton.style.transform = 'translateX(-125%)';
-                }
+                button.addEventListener('mouseleave', function() {
+                    if (currentPage === 4 && this.id === 'noPage4') {
+                        this.style.transform = 'translateX(0)';
+                    }
+                });
             });
         });
     </script>
