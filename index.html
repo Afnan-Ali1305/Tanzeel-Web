@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Heartfelt Apology to Maha 💌</title>
+    <title>I'm DEEPLY Sorry Maha! 😭💔</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Open+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
@@ -16,7 +16,7 @@
 
         body {
             min-height: 100vh;
-            background: linear-gradient(135deg, #e0f7fa 0%, #fce4ec 100%);
+            background: linear-gradient(135deg, #ffe6e6 0%, #e6f2ff 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -25,110 +25,286 @@
             overflow-x: hidden;
         }
 
-        /* Message Editor Container */
-        .editor-container {
+        /* Regret Overlay */
+        .regret-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            max-width: 600px;
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
-            border: 5px solid #ff6b8b;
-            text-align: center;
+            height: 100%;
+            background: rgba(255, 107, 139, 0.05);
+            z-index: -1;
+            pointer-events: none;
         }
 
-        .editor-title {
-            color: #d45d79;
-            font-size: 2.3rem;
-            margin-bottom: 20px;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-        }
-
-        .editor-instruction {
-            font-size: 1.1rem;
-            color: #666;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-
-        #specialMessageInput {
+        /* Crying Effect */
+        .crying-effect {
+            position: fixed;
             width: 100%;
-            height: 150px;
-            padding: 20px;
-            font-size: 1.1rem;
-            border: 3px dashed #ff6b8b;
-            border-radius: 15px;
-            resize: none;
-            margin-bottom: 20px;
-            font-family: 'Open Sans', sans-serif;
-            background: #fff9f9;
-            transition: all 0.3s ease;
-            line-height: 1.6;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
         }
 
-        #specialMessageInput:focus {
-            outline: none;
-            border: 3px solid #ff6b8b;
-            box-shadow: 0 0 15px rgba(255, 107, 139, 0.3);
-            background: #fff;
+        .regret-tear {
+            position: absolute;
+            width: 10px;
+            height: 25px;
+            background: linear-gradient(to bottom, #87ceeb, #4a90e2);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: regretTearFall 3s infinite;
+            opacity: 0.6;
         }
 
-        .preview-title {
-            color: #6a457a;
-            font-size: 1.3rem;
-            margin: 10px 0;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-        }
-
-        #messagePreview {
-            min-height: 80px;
-            padding: 15px;
-            background: linear-gradient(135deg, #fff0f7, #f0f8ff);
-            border-radius: 10px;
-            border-left: 5px solid #9b59b6;
-            font-size: 1.1rem;
-            color: #5a3d5c;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .editor-button {
-            padding: 15px 40px;
-            font-size: 1.3rem;
-            background: linear-gradient(135deg, #ff6b8b, #ff8e53);
-            color: white;
-            border: none;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 6px 0 rgba(0, 0, 0, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 10px auto;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 500;
-        }
-
-        .editor-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 9px 0 rgba(0, 0, 0, 0.2);
-        }
-
-        .editor-button:active {
-            transform: translateY(3px);
-            box-shadow: 0 3px 0 rgba(0, 0, 0, 0.2);
+        @keyframes regretTearFall {
+            0% { transform: translateY(-100px) scale(0.5); opacity: 0; }
+            50% { opacity: 0.8; }
+            100% { transform: translateY(100vh) scale(1); opacity: 0; }
         }
 
         /* Main Website Container */
         .main-container {
-            display: none;
             width: 100%;
             max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* REGRET BANNER - VERY PROMINENT */
+        .regret-banner {
+            background: linear-gradient(135deg, #ff6b8b, #ff4757);
+            color: white;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 20px 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255, 107, 139, 0.3);
+            border: 5px solid white;
+            animation: regretPulse 2s infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes regretPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 10px 30px rgba(255, 107, 139, 0.3); }
+            50% { transform: scale(1.02); box-shadow: 0 15px 40px rgba(255, 107, 139, 0.5); }
+        }
+
+        .regret-banner::before {
+            content: '😭';
+            position: absolute;
+            font-size: 60px;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.3;
+        }
+
+        .regret-banner::after {
+            content: '💔';
+            position: absolute;
+            font-size: 60px;
+            right: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.3;
+        }
+
+        .regret-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            font-family: 'Poppins', sans-serif;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .regret-subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+
+        /* Tea Gift Section */
+        .tea-gift {
+            text-align: center;
+            margin: 40px 0;
+            padding: 40px;
+            background: linear-gradient(135deg, #fff3e0, #ffecb3);
+            border-radius: 20px;
+            border: 5px solid #ff9800;
+            position: relative;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+            animation: teaGlow 3s infinite alternate;
+        }
+
+        @keyframes teaGlow {
+            0% { box-shadow: 0 0 20px rgba(255, 152, 0, 0.3); }
+            100% { box-shadow: 0 0 40px rgba(255, 152, 0, 0.6); }
+        }
+
+        .tea-cup {
+            font-size: 120px;
+            margin: 20px 0;
+            display: inline-block;
+            animation: teaSteam 4s infinite;
+            filter: drop-shadow(5px 5px 10px rgba(0, 0, 0, 0.2));
+        }
+
+        @keyframes teaSteam {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-10px) rotate(-2deg); }
+            75% { transform: translateY(-5px) rotate(2deg); }
+        }
+
+        .tea-steam {
+            position: absolute;
+            font-size: 60px;
+            color: rgba(255, 255, 255, 0.8);
+            top: 50px;
+            animation: steamRise 3s infinite;
+        }
+
+        .steam-1 {
+            left: 45%;
+            animation-delay: 0s;
+        }
+
+        .steam-2 {
+            left: 48%;
+            animation-delay: 0.5s;
+        }
+
+        .steam-3 {
+            left: 51%;
+            animation-delay: 1s;
+        }
+
+        @keyframes steamRise {
+            0% { transform: translateY(0) scale(0.5); opacity: 0; }
+            50% { transform: translateY(-60px) scale(1); opacity: 0.7; }
+            100% { transform: translateY(-120px) scale(1.5); opacity: 0; }
+        }
+
+        .tea-message {
+            font-size: 1.8rem;
+            color: #d45d79;
+            margin: 20px 0;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.8);
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+
+        /* HEAVY REGRET SECTION */
+        .heavy-regret {
+            background: linear-gradient(135deg, #fff5f5, #ffe6e6);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            border: 4px solid #ff6b8b;
+            position: relative;
+            box-shadow: 0 10px 25px rgba(255, 107, 139, 0.2);
+        }
+
+        .heavy-regret::before {
+            content: '⚠️';
+            position: absolute;
+            font-size: 40px;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .regret-icon {
+            font-size: 50px;
+            text-align: center;
+            margin-bottom: 20px;
+            animation: regretIcon 2s infinite;
+        }
+
+        @keyframes regretIcon {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        .regret-statement {
+            font-size: 1.6rem;
+            color: #d45d79;
+            text-align: center;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .regret-detail {
+            font-size: 1.2rem;
+            color: #5a3d5c;
+            text-align: center;
+            line-height: 1.6;
+            padding: 0 20px;
+        }
+
+        /* GUILTY CONSCIENCE SECTION */
+        .guilty-box {
+            background: linear-gradient(135deg, #ffebee, #ffcdd2);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 25px 0;
+            border: 3px solid #f44336;
+            position: relative;
+            animation: guiltyShake 3s infinite;
+        }
+
+        @keyframes guiltyShake {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+
+        .guilty-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .guilty-icon {
+            font-size: 40px;
+        }
+
+        .guilty-title {
+            font-size: 1.5rem;
+            color: #d32f2f;
+            font-weight: 700;
+        }
+
+        .guilty-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .guilty-list li {
+            padding: 10px 0;
+            border-bottom: 1px dashed #ff8a80;
+            font-size: 1.1rem;
+            color: #5a3d5c;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .guilty-list li:last-child {
+            border-bottom: none;
+        }
+
+        .guilty-list li::before {
+            content: '😣';
+            font-size: 20px;
         }
 
         /* Diary Style Pages */
@@ -143,6 +319,7 @@
             border: 2px solid #ffb6c1;
             transform-style: preserve-3d;
             animation: pageFlip 0.8s ease-out;
+            overflow: hidden;
         }
 
         @keyframes pageFlip {
@@ -152,25 +329,6 @@
 
         .diary-page.active {
             display: block;
-        }
-
-        /* Diary Hole Punches */
-        .diary-page::before {
-            content: '';
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 15px;
-            height: 120px;
-            background: repeating-linear-gradient(
-                to bottom,
-                transparent,
-                transparent 10px,
-                #ffb6c1 10px,
-                #ffb6c1 20px
-            );
-            border-radius: 7px;
         }
 
         .page-header {
@@ -205,100 +363,13 @@
         }
 
         .highlight-text {
-            background: linear-gradient(120deg, #ffeb3b 0%, #ffeb3b 100%);
+            background: linear-gradient(120deg, #ff6b8b 0%, #ff6b8b 100%);
             background-repeat: no-repeat;
             background-size: 100% 0.3em;
             background-position: 0 88%;
             padding: 0 5px;
             font-weight: 600;
-        }
-
-        /* Tear Drops */
-        .tear {
-            position: absolute;
-            width: 8px;
-            height: 15px;
-            background: linear-gradient(to bottom, #87ceeb, transparent);
-            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-            animation: tearFall 2s infinite;
-            opacity: 0.7;
-        }
-
-        @keyframes tearFall {
-            0% { transform: translateY(-20px) scale(0.5); opacity: 0; }
-            50% { opacity: 1; }
-            100% { transform: translateY(100px) scale(1); opacity: 0; }
-        }
-
-        /* Sticky Notes */
-        .sticky-note {
-            background: #fff9c4;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 5px;
-            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
-            transform: rotate(-1deg);
-            border-left: 8px solid #ffd54f;
-            position: relative;
-            font-size: 1.1rem;
-            line-height: 1.6;
-        }
-
-        .sticky-note::after {
-            content: '';
-            position: absolute;
-            top: -10px;
-            right: 20px;
-            width: 30px;
-            height: 30px;
-            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ffd54f'%3E%3Cpath d='M18.5 2.5l-16 16 3 3 16-16-3-3z'/%3E%3C/svg%3E") no-repeat;
-        }
-
-        /* Flower Decor */
-        .flower {
-            position: absolute;
-            font-size: 30px;
-            opacity: 0.2;
-            animation: flowerBloom 4s infinite;
-        }
-
-        @keyframes flowerBloom {
-            0%, 100% { transform: scale(0.8) rotate(0deg); }
-            50% { transform: scale(1.1) rotate(10deg); }
-        }
-
-        /* Special Message Box */
-        .special-message {
-            background: linear-gradient(135deg, #fff0f7, #f0f8ff);
-            border-left: 5px solid #9b59b6;
-            border-radius: 10px;
-            padding: 25px;
-            margin: 30px 0;
-            font-size: 1.2rem;
-            line-height: 1.7;
-            color: #5a3d5c;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        /* Sticker Promises */
-        .sticker {
-            display: inline-block;
-            background: #ffebee;
-            padding: 12px 20px;
-            margin: 10px;
-            border-radius: 20px;
-            border: 2px dashed #d45d79;
-            font-size: 1rem;
-            color: #5a3d5c;
-            transform: rotate(-2deg);
-            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
-            font-weight: 500;
-        }
-
-        .sticker:nth-child(even) {
-            transform: rotate(2deg);
-            background: #e8f5e9;
-            border-color: #4caf50;
+            color: white;
         }
 
         /* Buttons */
@@ -349,29 +420,6 @@
             box-shadow: 0 8px 0 rgba(0, 0, 0, 0.15);
         }
 
-        /* Gift Section */
-        .gift-section {
-            text-align: center;
-            margin: 40px 0;
-            padding: 30px;
-            background: linear-gradient(135deg, #fff3e0, #ffecb3);
-            border-radius: 15px;
-            border: 3px dashed #ff9800;
-            position: relative;
-        }
-
-        .gift-icon {
-            font-size: 4rem;
-            color: #ff6b8b;
-            margin-bottom: 20px;
-            animation: giftBounce 2s infinite;
-        }
-
-        @keyframes giftBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
-        }
-
         /* Final Celebration */
         .celebration {
             text-align: center;
@@ -389,269 +437,332 @@
             100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
         }
 
-        .heart-animation {
-            font-size: 4rem;
-            margin: 20px 0;
-            animation: heartbeat 1.5s infinite;
-        }
-
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-            100% { transform: scale(1); }
-        }
-
         /* Responsive */
         @media (max-width: 768px) {
-            .editor-title, .page-title { font-size: 2rem; }
+            .regret-title { font-size: 2rem; }
+            .regret-subtitle { font-size: 1.2rem; }
+            .regret-statement { font-size: 1.4rem; }
+            .page-title { font-size: 2rem; }
             .diary-content { font-size: 1.1rem; }
-            .special-message { font-size: 1.1rem; }
             .diary-btn { min-width: 150px; padding: 12px 25px; font-size: 1.1rem; }
             .diary-buttons { gap: 15px; }
-            .editor-container, .diary-page { padding: 25px; }
-            .sticker { font-size: 0.95rem; padding: 10px 15px; }
+            .diary-page { padding: 25px; }
+            .tea-cup { font-size: 90px; }
+            .tea-message { font-size: 1.5rem; }
         }
 
         @media (max-width: 480px) {
-            .editor-title, .page-title { font-size: 1.7rem; }
+            .regret-title { font-size: 1.7rem; }
+            .regret-subtitle { font-size: 1.1rem; }
+            .regret-statement { font-size: 1.2rem; }
+            .page-title { font-size: 1.7rem; }
             .diary-content { font-size: 1rem; padding: 0 10px; }
             .diary-buttons { flex-direction: column; align-items: center; }
             .diary-btn { width: 100%; max-width: 250px; }
             body { padding: 10px; }
-            .sticky-note { font-size: 1rem; padding: 15px; }
+            .tea-cup { font-size: 70px; }
+            .tea-message { font-size: 1.3rem; }
         }
     </style>
 </head>
 <body>
-    <!-- EDITOR SECTION - Type your message first -->
-    <div class="editor-container" id="editorSection">
-        <h1 class="editor-title">💌 Your Message to Maha</h1>
-        <p class="editor-instruction">Type your heartfelt message for Maha below. This will appear in the special message box!</p>
-        
-        <textarea id="specialMessageInput" placeholder="Type your special message for Maha here... 
-Example: 'Maha, you are the most amazing person I know. I was wrong to get hyper and I deeply regret it. Your friendship means everything to me...'">Maha, you are a great personality... I can't imagine my life without you. I was wrong to get hyper, and I'm truly sorry from the bottom of my heart.</textarea>
-        
-        <p class="preview-title">Preview:</p>
-        <div id="messagePreview">Maha, you are a great personality... I can't imagine my life without you. I was wrong to get hyper, and I'm truly sorry from the bottom of my heart.</div>
-        
-        <button class="editor-button" id="createWebsiteBtn">
-            <i class="fas fa-magic"></i> Create My Apology Website
-        </button>
-    </div>
+    <!-- Regret Overlay with Tears -->
+    <div class="regret-overlay"></div>
+    <div class="crying-effect" id="cryingEffect"></div>
 
-    <!-- MAIN WEBSITE (Hidden until message is set) -->
+    <!-- MAIN WEBSITE -->
     <div class="main-container" id="mainWebsite">
-        <!-- Page 1: Apology Letter -->
+        <!-- Page 1: BIG REGRET BANNER -->
         <div class="diary-page active" id="page1">
-            <div class="flower">🌸</div>
-            <div class="flower" style="right: 40px; top: 100px;">🌺</div>
+            <!-- REGRET BANNER - VERY PROMINENT -->
+            <div class="regret-banner">
+                <h1 class="regret-title">I'M DEEPLY, TRULY SORRY MAHA! 😭</h1>
+                <p class="regret-subtitle">I regret getting hyper more than words can express. My heart aches for hurting you.</p>
+            </div>
             
             <div class="page-header">
                 <h1 class="page-title">My Apology Diary</h1>
-                <p class="page-date">Entry #1: The Day I Realized My Mistake</p>
+                <p class="page-date">Entry #1: The Worst Mistake I've Ever Made</p>
+            </div>
+            
+            <!-- HEAVY REGRET SECTION -->
+            <div class="heavy-regret">
+                <div class="regret-icon">💔</div>
+                <div class="regret-statement">
+                    "I CAN'T FORGIVE MYSELF FOR HURTING YOU"
+                </div>
+                <div class="regret-detail">
+                    Every second since I got hyper, I've been drowning in regret. 
+                    Seeing you hurt because of my actions is eating me alive.
+                </div>
             </div>
             
             <div class="diary-content">
                 <p>Dear <span class="highlight-text">Maha</span>,</p>
                 
-                <div class="tear" style="left: 30%;"></div>
-                <div class="tear" style="right: 25%; animation-delay: 0.5s;"></div>
+                <p>I'm writing this through tears of regret. Getting <span class="highlight-text">hyper</span> and hurting you was the <strong>biggest mistake of my life</strong>. I've been unable to sleep, unable to eat properly, just thinking about how I could be so thoughtless with someone as precious as you.</p>
                 
-                <p>I'm writing this with a heavy heart, filled with regret for getting <span class="highlight-text">hyper</span> and hurting you. Every moment since then, I've been thinking about how I could be so careless with someone as precious as you.</p>
-                
-                <div class="sticky-note">
-                    <strong>Note to Myself:</strong> Never again let anger come between us. Maha's smile is worth more than any temporary frustration.
+                <!-- GUILTY CONSCIENCE -->
+                <div class="guilty-box">
+                    <div class="guilty-header">
+                        <div class="guilty-icon">😔</div>
+                        <div class="guilty-title">My Guilty Conscience</div>
+                    </div>
+                    <ul class="guilty-list">
+                        <li>I keep replaying that moment in my head</li>
+                        <li>I hate myself for losing control</li>
+                        <li>Your hurt expression haunts me every day</li>
+                        <li>I feel like I don't deserve your friendship</li>
+                        <li>The guilt is physically painful</li>
+                    </ul>
                 </div>
                 
-                <p>You've always been there for me, through thick and thin. And I repaid that kindness by losing my temper. I don't have any excuses - just a sincere apology and a promise to do better.</p>
+                <p>You've always been my rock, my confidante, my source of joy. And I repaid your kindness with thoughtless anger. There's <strong>NO EXCUSE</strong> for my behavior. Just deep, profound regret and a desperate hope for your forgiveness.</p>
+                
+                <p style="text-align: center; margin-top: 30px; font-style: italic; color: #ff6b8b; font-weight: 600;">
+                    "I would give anything to take back that moment"
+                </p>
             </div>
             
             <div class="diary-buttons">
                 <button class="diary-btn forgive-btn" id="yesPage1">
-                    <i class="fas fa-heart"></i> Read More
+                    <i class="fas fa-heart"></i> I See Your Regret
                 </button>
                 <button class="diary-btn wait-btn" id="noPage1">
-                    <i class="fas fa-hourglass"></i> Maybe Later
+                    <i class="fas fa-hourglass"></i> Still Hurting
                 </button>
             </div>
         </div>
 
-        <!-- Page 2: Special Message -->
+        <!-- Page 2: REGRET INTENSIFIED -->
         <div class="diary-page" id="page2">
-            <div class="flower" style="left: 60px; top: 200px;">💮</div>
-            
             <div class="page-header">
-                <h1 class="page-title">From My Heart</h1>
-                <p class="page-date">What You Truly Mean to Me</p>
+                <h1 class="page-title">My Ocean of Regret</h1>
+                <p class="page-date">Entry #2: Drowning in Remorse</p>
+            </div>
+            
+            <!-- REGRET BANNER AGAIN -->
+            <div class="regret-banner" style="background: linear-gradient(135deg, #ff4757, #ff3838);">
+                <h1 class="regret-title">I'M BEGGING FOR YOUR FORGIVENESS 🙏</h1>
+                <p class="regret-subtitle">The pain of losing your friendship is unbearable. Please give me another chance.</p>
             </div>
             
             <div class="diary-content">
-                <p>Maha, there's something I need you to know, something that's been in my heart for a long time...</p>
+                <p>Maha,</p>
                 
-                <div class="special-message" id="displayedMessage">
-                    <!-- YOUR EDITED MESSAGE APPEARS HERE -->
-                    Maha, you are a great personality... I can't imagine my life without you. I was wrong to get hyper, and I'm truly sorry from the bottom of my heart.
+                <div class="heavy-regret">
+                    <div class="regret-icon">😢</div>
+                    <div class="regret-statement">
+                        "LIFE WITHOUT YOUR FRIENDSHIP IS EMPTY"
+                    </div>
+                    <div class="regret-detail">
+                        These past days have shown me what true regret feels like. 
+                        Every laugh feels hollow, every moment feels incomplete without you.
+                    </div>
                 </div>
                 
-                <div class="tear" style="left: 40%; animation-delay: 0.3s;"></div>
-                <div class="tear" style="right: 35%; animation-delay: 0.7s;"></div>
+                <p>Your friendship wasn't just important to me - it was <span class="highlight-text">EVERYTHING</span>. You were the sunlight in my cloudy days, the laughter in my silence, the comfort in my struggles. And I threw it all away in a moment of stupidity.</p>
                 
-                <p>These aren't just words, Maha. Every syllable comes from the deepest part of my soul. When I think about my life without your friendship, it feels empty and colorless.</p>
+                <div style="text-align: center; margin: 30px 0; padding: 20px; background: #fff5f5; border-radius: 10px; border: 2px dashed #ff6b8b;">
+                    <h3 style="color: #d45d79; margin-bottom: 10px;">What I've Lost:</h3>
+                    <p style="color: #5a3d5c; font-size: 1.1rem;">
+                        • Your trust • Your smile • Your companionship • Your understanding • Our inside jokes • Our shared dreams
+                    </p>
+                </div>
                 
-                <p>You bring <span class="highlight-text">joy</span>, <span class="highlight-text">laughter</span>, and <span class="highlight-text">meaning</span> to my days. Losing that over something as silly as me getting hyper would be the biggest mistake of my life.</p>
+                <p>I know "sorry" is just a word, but please know it comes from the deepest, most regretful part of my soul. I'm not asking you to forget what happened - I'm asking you to believe that I've learned my lesson, that I'm changed by this regret, that I'll spend every day making it up to you.</p>
+                
+                <div class="guilty-box" style="background: linear-gradient(135deg, #ffebee, #ef9a9a);">
+                    <div class="guilty-header">
+                        <div class="guilty-icon">🥺</div>
+                        <div class="guilty-title">My Promise From This Regret</div>
+                    </div>
+                    <ul class="guilty-list">
+                        <li>I will NEVER get hyper with you again</li>
+                        <li>I will treasure every moment with you</li>
+                        <li>I will be more patient and understanding</li>
+                        <li>I will value you above everything else</li>
+                        <li>I will prove I'm worthy of your friendship</li>
+                    </ul>
+                </div>
             </div>
             
             <div class="diary-buttons">
                 <button class="diary-btn forgive-btn" id="yesPage2">
-                    <i class="fas fa-heart"></i> This Touches Me
+                    <i class="fas fa-heart"></i> I Believe Your Regret
                 </button>
                 <button class="diary-btn wait-btn" id="noPage2">
-                    <i class="fas fa-pause"></i> I Need Time
+                    <i class="fas fa-pause"></i> Need More Time
                 </button>
             </div>
         </div>
 
-        <!-- Page 3: Promises -->
+        <!-- Page 3: Tea Gift with Regret -->
         <div class="diary-page" id="page3">
             <div class="page-header">
-                <h1 class="page-title">My Solemn Vows</h1>
-                <p class="page-date">Promises I Intend to Keep</p>
+                <h1 class="page-title">A Symbol of My Remorse</h1>
+                <p class="page-date">Entry #3: Making Amends</p>
+            </div>
+            
+            <!-- REGRET BANNER -->
+            <div class="regret-banner" style="background: linear-gradient(135deg, #3498db, #2980b9);">
+                <h1 class="regret-title">THIS TEA SYMBOLIZES MY REGRET ☕</h1>
+                <p class="regret-subtitle">Just as tea needs time to brew, I need time to prove my changed heart</p>
+            </div>
+            
+            <div class="tea-gift">
+                <div class="tea-steam steam-1">☁️</div>
+                <div class="tea-steam steam-2">☁️</div>
+                <div class="tea-steam steam-3">☁️</div>
+                
+                <div class="tea-cup">🍵</div>
+                
+                <div class="tea-message">A Cup of Tea & A Heart Full of Regret</div>
+                
+                <div style="margin-top: 20px; padding: 20px; background: rgba(255, 255, 255, 0.9); border-radius: 10px;">
+                    <p style="color: #5a3d5c; font-size: 1.2rem; line-height: 1.6;">
+                        <strong>Maha, this tea represents:</strong><br>
+                        • The warmth I want to return to our friendship<br>
+                        • The time I'm willing to wait for your forgiveness<br>
+                        • The healing I hope we can share together<br>
+                        • The new beginning I'm desperately hoping for
+                    </p>
+                </div>
             </div>
             
             <div class="diary-content">
-                <p>Maha, I know apologies need action to back them up. So here are my promises to you:</p>
+                <p>They say actions speak louder than words. So while my words express my regret, this virtual cup of tea represents my commitment to change.</p>
                 
-                <div style="margin: 25px 0; text-align: center;">
-                    <div class="sticker">I will control my temper</div>
-                    <div class="sticker">I will listen more carefully</div>
-                    <div class="sticker">I will be more patient</div>
-                    <div class="sticker">I will value our friendship above all</div>
-                    <div class="sticker">I will never take you for granted</div>
-                    <div class="sticker">I will be the friend you deserve</div>
+                <div class="heavy-regret" style="background: linear-gradient(135deg, #e3f2fd, #bbdefb); border-color: #2196f3;">
+                    <div class="regret-icon">🤲</div>
+                    <div class="regret-statement" style="color: #1565c0;">
+                        "I'M WILLING TO DO WHATEVER IT TAKES"
+                    </div>
+                    <div class="regret-detail" style="color: #0d47a1;">
+                        Time, patience, effort - I'll give it all to rebuild what I broke. 
+                        Your friendship is worth every sacrifice.
+                    </div>
                 </div>
                 
-                <p>Each of these promises is written with intention. I've learned my lesson, Maha. Sometimes we don't realize what we have until we risk losing it.</p>
+                <p>Maha, I'm not just asking for forgiveness. I'm asking for a chance to prove that this regret has changed me, that I've learned the hardest lesson of my life, that I'll be a better friend than I ever was before.</p>
                 
-                <div class="sticky-note">
-                    <strong>Reminder:</strong> True friendship means growing together, learning from mistakes, and becoming better people for each other.
-                </div>
+                <p style="text-align: center; margin-top: 30px; padding: 15px; background: #fff8e1; border-radius: 8px; border-left: 5px solid #ff9800;">
+                    <strong>"From the ashes of my regret, I hope our friendship can rise stronger than ever"</strong>
+                </p>
             </div>
             
             <div class="diary-buttons">
-                <button class="diary-btn forgive-btn" id="yesPage3">
-                    <i class="fas fa-handshake"></i> I Accept Your Promises
+                <button class="diary-btn forgive-btn" id="yesPage3" style="background: linear-gradient(135deg, #ff6b8b, #ff8e53);">
+                    <i class="fas fa-mug-hot"></i> Accept Tea & Forgiveness
                 </button>
                 <button class="diary-btn wait-btn" id="noPage3">
-                    <i class="fas fa-times"></i> Not Convinced Yet
+                    <i class="fas fa-times"></i> Not Ready to Forgive
                 </button>
             </div>
         </div>
 
-        <!-- Page 4: Gift of Friendship -->
+        <!-- Page 4: Final Plea -->
         <div class="diary-page" id="page4">
             <div class="page-header">
-                <h1 class="page-title">A Token of My Sincerity</h1>
-                <p class="page-date">Rebuilding What Matters</p>
+                <h1 class="page-title">My Final, Desperate Plea</h1>
+                <p class="page-date">Last Entry: A Changed Heart</p>
             </div>
             
-            <div class="gift-section">
-                <div class="gift-icon">🎁</div>
-                <h2 style="color: #ff6b8b; font-family: 'Poppins', sans-serif;">The Gift of Renewed Friendship</h2>
-                <p>This isn't a physical gift, but something much more valuable - my commitment to being a better friend, my sincere apology, and all the love and respect I have for you.</p>
-                <p style="margin-top: 15px; font-style: italic;">Will you accept this gift and give our friendship another chance?</p>
+            <!-- FINAL REGRET BANNER -->
+            <div class="regret-banner" style="background: linear-gradient(135deg, #9b59b6, #8e44ad);">
+                <h1 class="regret-title">PLEASE DON'T GIVE UP ON ME 😭🙏</h1>
+                <p class="regret-subtitle">This regret has changed me forever. Please believe in the person I want to become.</p>
             </div>
             
-            <div class="diary-content">
-                <p>Maha, sometimes friendships go through storms to become stronger. I believe this can be one of those moments for us - where we come out closer and more understanding than before.</p>
-                
-                <p>You've seen me at my worst, and I'm asking you to give me a chance to show you my best.</p>
-            </div>
-            
-            <div class="diary-buttons">
-                <button class="diary-btn forgive-btn" id="yesPage4" style="background: linear-gradient(135deg, #ff6b8b, #ff8e53);">
-                    <i class="fas fa-gift"></i> Accept Your Gift
-                </button>
-                <button class="diary-btn wait-btn" id="noPage4">
-                    <i class="fas fa-box-open"></i> Not Ready
-                </button>
-            </div>
-        </div>
-
-        <!-- Page 5: Reconciliation -->
-        <div class="diary-page" id="page5">
             <div class="celebration">
-                <div class="heart-animation">💖</div>
-                <h1 class="page-title">Friendship Restored!</h1>
-                <p class="diary-content" style="text-align: center; color: #2e7d32;">
-                    Thank you, Maha, for your beautiful heart and for giving me another chance. 
-                    Our friendship means the world to me, and I promise to cherish it every single day.
-                </p>
+                <h2 style="color: #2e7d32; margin-bottom: 20px;">The Friendship I Dream Of Rebuilding:</h2>
                 
-                <div style="margin: 30px 0;">
-                    <div class="sticker" style="background: #e8f5e9; color: #2e7d32;">Best Friends Forever</div>
-                    <div class="sticker" style="background: #fff3e0; color: #ff6f00;">Stronger Than Before</div>
-                    <div class="sticker" style="background: #f3e5f5; color: #7b1fa2;">Unbreakable Bond</div>
+                <div style="display: flex; justify-content: center; gap: 20px; margin: 30px 0; flex-wrap: wrap;">
+                    <div style="text-align: center; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <div style="font-size: 40px; margin-bottom: 10px;">🤗</div>
+                        <div style="font-weight: 600; color: #4caf50;">Warm Hugs</div>
+                    </div>
+                    <div style="text-align: center; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <div style="font-size: 40px; margin-bottom: 10px;">😊</div>
+                        <div style="font-weight: 600; color: #4caf50;">Genuine Smiles</div>
+                    </div>
+                    <div style="text-align: center; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+                        <div style="font-size: 40px; margin-bottom: 10px;">💝</div>
+                        <div style="font-weight: 600; color: #4caf50;">Unconditional Love</div>
+                    </div>
+                </div>
+                
+                <div class="heavy-regret" style="background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-color: #4caf50;">
+                    <div class="regret-icon">✨</div>
+                    <div class="regret-statement" style="color: #2e7d32;">
+                        "YOUR FORGIVENESS WOULD MEAN EVERYTHING"
+                    </div>
+                    <div class="regret-detail" style="color: #1b5e20;">
+                        It would be the greatest gift, the sweetest victory, 
+                        the most beautiful second chance of my life.
+                    </div>
                 </div>
             </div>
             
             <div class="diary-content">
                 <p>Dear Maha,</p>
-                <p>Today marks a new beginning for our friendship. A beginning built on understanding, patience, and mutual respect.</p>
-                <p>I will never forget this lesson you've taught me about the value of friendship and controlling one's emotions.</p>
-                <p>Thank you for being you - amazing, forgiving, and wonderful.</p>
-                <p style="text-align: right; margin-top: 30px; font-style: italic;">
-                    With all my love and gratitude,<br>
-                    Your forever friend
+                
+                <p>If you've read this far, thank you. Thank you for hearing my regret, for considering my apology, for giving me this chance to express how truly, deeply sorry I am.</p>
+                
+                <p style="text-align: center; margin: 25px 0; padding: 20px; background: linear-gradient(135deg, #fff0f7, #fce4ec); border-radius: 10px; border: 3px solid #d45d79;">
+                    <strong style="color: #d45d79; font-size: 1.3rem;">"I don't expect you to forget, but I hope you can forgive"</strong>
+                </p>
+                
+                <p>This regret has been my teacher. It has shown me what truly matters - your friendship, your trust, your presence in my life. I've learned my lesson in the hardest way possible.</p>
+                
+                <p>All I'm asking for is one more chance. One chance to show you the better person I've become through this regret. One chance to rebuild what I broke. One chance to be the friend you deserve.</p>
+                
+                <p style="text-align: right; margin-top: 40px; font-style: italic; color: #d45d79;">
+                    With all the regret, hope, and love in my heart,<br>
+                    Your forever-regretful friend
                 </p>
             </div>
             
             <div class="diary-buttons">
-                <button class="diary-btn forgive-btn" id="yesPage5" style="background: linear-gradient(135deg, #9c27b0, #673ab7);">
-                    <i class="fas fa-infinity"></i> Friends Forever!
+                <button class="diary-btn forgive-btn" id="yesPage4" style="background: linear-gradient(135deg, #9c27b0, #673ab7); width: 300px;">
+                    <i class="fas fa-infinity"></i> I FORGIVE YOU! 💝
                 </button>
-                <button class="diary-btn" id="editAgainBtn" style="background: linear-gradient(135deg, #607d8b, #455a64);">
-                    <i class="fas fa-edit"></i> Edit Message Again
+                <button class="diary-btn wait-btn" id="noPage4" style="background: linear-gradient(135deg, #607d8b, #455a64);">
+                    <i class="fas fa-heart-broken"></i> I Need More Time
                 </button>
             </div>
         </div>
     </div>
 
     <script>
-        // Store the user's custom message
-        let userMessage = "Maha, you are a great personality... I can't imagine my life without you. I was wrong to get hyper, and I'm truly sorry from the bottom of my heart.";
-        let currentPage = 1;
+        // Create crying tears effect
+        function createRegretTears() {
+            const cryingEffect = document.getElementById('cryingEffect');
+            if (!cryingEffect) return;
+            
+            // Clear existing tears
+            cryingEffect.innerHTML = '';
+            
+            // Create multiple tears
+            for (let i = 0; i < 15; i++) {
+                const tear = document.createElement('div');
+                tear.className = 'regret-tear';
+                tear.style.left = Math.random() * 100 + '%';
+                tear.style.animationDelay = Math.random() * 3 + 's';
+                tear.style.width = Math.random() * 8 + 5 + 'px';
+                tear.style.height = Math.random() * 20 + 15 + 'px';
+                cryingEffect.appendChild(tear);
+            }
+        }
         
-        // Initialize the editor
+        // Initialize the website
         document.addEventListener('DOMContentLoaded', function() {
-            const messageInput = document.getElementById('specialMessageInput');
-            const messagePreview = document.getElementById('messagePreview');
-            const createBtn = document.getElementById('createWebsiteBtn');
-            const displayedMessage = document.getElementById('displayedMessage');
+            // Create regret tears
+            createRegretTears();
+            // Refresh tears every 10 seconds
+            setInterval(createRegretTears, 10000);
             
-            // Update preview as user types
-            messageInput.addEventListener('input', function() {
-                userMessage = this.value;
-                messagePreview.textContent = userMessage || "(Your message will appear here)";
-            });
-            
-            // Create website button
-            createBtn.addEventListener('click', function() {
-                if (userMessage.trim() === "") {
-                    alert("Please type a message for Maha first! ❤️");
-                    messageInput.focus();
-                    return;
-                }
-                
-                // Hide editor, show main website
-                document.getElementById('editorSection').style.display = 'none';
-                document.getElementById('mainWebsite').style.display = 'block';
-                
-                // Update the displayed message
-                displayedMessage.textContent = userMessage;
-                
-                // Add some random tears
-                addTears();
-            });
+            let currentPage = 1;
             
             // Page navigation
             function goToPage(pageNumber) {
@@ -666,10 +777,13 @@ Example: 'Maha, you are the most amazing person I know. I was wrong to get hyper
                     targetPage.classList.add('active');
                     currentPage = pageNumber;
                     
-                    // Add tears to crying pages
-                    if (pageNumber === 2) {
-                        addTears();
+                    // Create new tears for emotional pages
+                    if (pageNumber <= 3) {
+                        createRegretTears();
                     }
+                    
+                    // Scroll to top of page
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
             }
             
@@ -679,8 +793,14 @@ Example: 'Maha, you are the most amazing person I know. I was wrong to get hyper
             });
             
             document.getElementById('noPage1').addEventListener('click', function() {
-                alert("I understand, Maha. Take your time. But please know I'm sincerely waiting for your forgiveness. 💔");
-                setTimeout(() => goToPage(2), 2000);
+                const noBtn = document.getElementById('noPage1');
+                noBtn.innerHTML = '<i class="fas fa-heart-broken"></i> The Hurt Is Deep';
+                noBtn.style.background = 'linear-gradient(135deg, #d32f2f, #b71c1c)';
+                
+                setTimeout(() => {
+                    alert("I understand, Maha. The pain I caused runs deep. Take all the time you need. My regret will wait as long as it takes. 😔💔");
+                    setTimeout(() => goToPage(2), 2000);
+                }, 500);
             });
             
             // Page 2 buttons
@@ -689,29 +809,19 @@ Example: 'Maha, you are the most amazing person I know. I was wrong to get hyper
             });
             
             document.getElementById('noPage2').addEventListener('click', function() {
-                alert("I'll wait as long as it takes, Maha. Every moment without your friendship feels empty. 😢");
-                setTimeout(() => goToPage(3), 3000);
+                const noBtn = document.getElementById('noPage2');
+                noBtn.innerHTML = '<i class="fas fa-running"></i> Still Processing';
+                noBtn.style.background = 'linear-gradient(135deg, #ff5722, #d84315)';
+                
+                setTimeout(() => {
+                    alert("I'll wait patiently, Maha. Every moment of waiting is deserved. I hope my sincere regret eventually reaches your heart. 🥺");
+                    setTimeout(() => goToPage(3), 3000);
+                }, 500);
             });
             
             // Page 3 buttons
             document.getElementById('yesPage3').addEventListener('click', function() {
                 goToPage(4);
-            });
-            
-            document.getElementById('noPage3').addEventListener('click', function() {
-                const noBtn = document.getElementById('noPage3');
-                noBtn.innerHTML = '<i class="fas fa-running"></i> Still Thinking...';
-                noBtn.style.background = 'linear-gradient(135deg, #ff5722, #d84315)';
-                
-                setTimeout(() => {
-                    alert("I understand you need more time to believe my promises. I'll prove them through my actions, not just words. 🌟");
-                    goToPage(4);
-                }, 2000);
-            });
-            
-            // Page 4 buttons
-            document.getElementById('yesPage4').addEventListener('click', function() {
-                goToPage(5);
                 
                 // Add celebration effect
                 const celebration = document.querySelector('.celebration');
@@ -720,67 +830,93 @@ Example: 'Maha, you are the most amazing person I know. I was wrong to get hyper
                 }
             });
             
-            document.getElementById('noPage4').addEventListener('click', function() {
-                const noBtn = document.getElementById('noPage4');
-                noBtn.innerHTML = '<i class="fas fa-heart-broken"></i> Please Reconsider';
-                noBtn.style.transform = 'translateX(20px)';
+            document.getElementById('noPage3').addEventListener('click', function() {
+                const noBtn = document.getElementById('noPage3');
+                noBtn.innerHTML = '<i class="fas fa-heart-crack"></i> Too Much Pain';
                 noBtn.style.background = 'linear-gradient(135deg, #d32f2f, #b71c1c)';
+                noBtn.style.transform = 'translateX(20px)';
                 
                 setTimeout(() => {
                     noBtn.style.transform = 'translateX(0)';
-                    alert("Maha, please don't close your heart completely. I'm begging for just one more chance to make things right. 🙏");
+                    alert("I understand the pain is still too fresh. I don't blame you, Maha. I'll keep this cup of tea warm, waiting for when you're ready. 😢");
                     
-                    // Force continue after 5 seconds
+                    // Force continue after 8 seconds with extra regret message
                     setTimeout(() => {
-                        if (currentPage === 4) {
-                            goToPage(5);
+                        if (currentPage === 3) {
+                            alert("But please know, my regret grows deeper with every passing moment without your friendship. 🙏");
+                            goToPage(4);
                         }
-                    }, 5000);
+                    }, 8000);
                 }, 300);
             });
             
-            // Page 5 buttons
-            document.getElementById('yesPage5').addEventListener('click', function() {
-                this.innerHTML = '<i class="fas fa-check-circle"></i> FRIENDSHIP SAVED! 💝';
+            // Page 4 buttons - FINAL DECISION
+            document.getElementById('yesPage4').addEventListener('click', function() {
+                // Change button to show confirmed
+                this.innerHTML = '<i class="fas fa-check-circle"></i> FORGIVENESS ACCEPTED! 🌈';
                 this.style.background = 'linear-gradient(135deg, #4caf50, #2e7d32)';
                 this.disabled = true;
                 
+                // Disable the "Need More Time" button
+                document.getElementById('noPage4').disabled = true;
+                document.getElementById('noPage4').innerHTML = '<i class="fas fa-heart"></i> Friendship Restored!';
+                document.getElementById('noPage4').style.background = 'linear-gradient(135deg, #4caf50, #2e7d32)';
+                
+                // Create a BIG celebration effect
                 setTimeout(() => {
-                    alert("🎉 THANK YOU MAHA! 🎉\n\nYou have no idea how much this means to me! \n\nI promise to be the friend you deserve every single day! 💖\n\nOur friendship is now stronger than ever! 🌈");
+                    // Create virtual confetti
+                    for (let i = 0; i < 50; i++) {
+                        const heart = document.createElement('div');
+                        heart.innerHTML = '💖';
+                        heart.style.position = 'fixed';
+                        heart.style.fontSize = Math.random() * 30 + 20 + 'px';
+                        heart.style.left = Math.random() * 100 + '%';
+                        heart.style.top = '-50px';
+                        heart.style.zIndex = '9999';
+                        heart.style.animation = `fall ${Math.random() * 3 + 2}s linear forwards`;
+                        document.body.appendChild(heart);
+                        
+                        // Remove after animation
+                        setTimeout(() => heart.remove(), 5000);
+                    }
+                    
+                    // Add CSS for falling animation
+                    const style = document.createElement('style');
+                    style.innerHTML = `
+                        @keyframes fall {
+                            to { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                    
+                    // Show ultimate success message
+                    alert("🎉🌈 MAHA, YOU'VE MADE ME THE HAPPIEST PERSON! 🎉🌈\n\nThank you from the bottom of my healed heart! \n\nThis forgiveness means more to me than anything in the world! \n\nI promise to treasure our renewed friendship every single day! \n\nYou've given me the greatest gift - a second chance! 💝☕\n\nLet's make beautiful new memories together! ✨");
+                    
+                    // Show tea celebration message
+                    setTimeout(() => {
+                        alert("☕ **TEA TIME PROMISE** ☕\n\nI promise to always be there for our tea chats, to listen, to understand, and to be the friend you deserve. \n\nOur first cup of tea as renewed friends will be the sweetest! 🥰");
+                    }, 1000);
                 }, 500);
             });
             
-            // Edit again button
-            document.getElementById('editAgainBtn').addEventListener('click', function() {
-                if (confirm("Go back and edit your message?")) {
-                    // Show editor again
-                    document.getElementById('editorSection').style.display = 'block';
-                    document.getElementById('mainWebsite').style.display = 'none';
+            document.getElementById('noPage4').addEventListener('click', function() {
+                const noBtn = document.getElementById('noPage4');
+                const originalHTML = noBtn.innerHTML;
+                const originalBg = noBtn.style.background;
+                
+                noBtn.innerHTML = '<i class="fas fa-heart-broken"></i> Please Reconsider 😭';
+                noBtn.style.background = 'linear-gradient(135deg, #d32f2f, #b71c1c)';
+                
+                setTimeout(() => {
+                    alert("Maha, please... I'm begging you from the depths of my regret-filled heart. \n\nDon't let my one moment of stupidity destroy our beautiful friendship forever. \n\nI'll spend my whole life making it up to you. Please... give me one more chance. 😭🙏");
                     
-                    // Reset to page 1
-                    goToPage(1);
-                }
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        noBtn.innerHTML = originalHTML;
+                        noBtn.style.background = originalBg;
+                    }, 3000);
+                }, 500);
             });
-            
-            // Function to add tear animations
-            function addTears() {
-                const pages = document.querySelectorAll('.diary-page.active');
-                pages.forEach(page => {
-                    // Remove existing tears
-                    const existingTears = page.querySelectorAll('.tear');
-                    existingTears.forEach(tear => tear.remove());
-                    
-                    // Add 3-5 new tears
-                    const tearCount = Math.floor(Math.random() * 3) + 3;
-                    for (let i = 0; i < tearCount; i++) {
-                        const tear = document.createElement('div');
-                        tear.className = 'tear';
-                        tear.style.left = Math.random() * 80 + 10 + '%';
-                        tear.style.animationDelay = Math.random() * 2 + 's';
-                        page.appendChild(tear);
-                    }
-                });
-            }
         });
     </script>
 </body>
